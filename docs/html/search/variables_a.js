@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['uv',['uv',['../class_kiwi_1_1_mesh.html#a7ff31a63bcda4f4539b39673d4e6cd51',1,'Kiwi::Mesh']]],
-  ['uvbuf',['uvBuf',['../class_kiwi_1_1_mesh.html#a693e496aac296d1dee1bb5f43b21c917',1,'Kiwi::Mesh']]]
+  ['tex',['tex',['../struct_kiwi_1_1_mesh_1_1_vertex.html#ab5f6487542b5f81dba2fa07aa1490ecd',1,'Kiwi::Mesh::Vertex']]],
+  ['type',['type',['../struct_kiwi_1_1glsl_var_info.html#a738688a776cd2ea8207e60f0d1f3b149',1,'Kiwi::glslVarInfo']]]
 ];

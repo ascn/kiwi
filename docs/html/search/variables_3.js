@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['idxbuf',['idxBuf',['../class_kiwi_1_1_mesh.html#acfa660ce86a3bd4396f2b51a5eb47ce1',1,'Kiwi::Mesh']]]
+  ['gameobject',['gameObject',['../class_kiwi_1_1_component.html#a35ee5319f1b634d3dbb214ba7bb04c33',1,'Kiwi::Component']]]
 ];

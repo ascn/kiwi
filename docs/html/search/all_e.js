@@ -1,15 +1,20 @@
 var searchData=
 [
-  ['terminateglfw',['terminateGLFW',['../class_kiwi_1_1_service_locator.html#a718b304da41ceeb75e7c0441c0e59f4b',1,'Kiwi::ServiceLocator']]],
-  ['transform',['Transform',['../class_kiwi_1_1_transform.html',1,'Kiwi::Transform'],['../class_kiwi_1_1_transform.html#a7d3df337e28cd2a41d662274d0a477b8',1,'Kiwi::Transform::Transform()']]],
-  ['transform_2ecpp',['Transform.cpp',['../_transform_8cpp.html',1,'']]],
-  ['transform_2eh',['Transform.h',['../_transform_8h.html',1,'']]],
-  ['transformdirection',['TransformDirection',['../class_kiwi_1_1_transform.html#acb390913d295d3de83557e35d410df6e',1,'Kiwi::Transform']]],
-  ['transformpoint',['TransformPoint',['../class_kiwi_1_1_transform.html#a5dd69c1160dc1a4cc13dd4d7b177e178',1,'Kiwi::Transform']]],
-  ['translate',['Translate',['../class_kiwi_1_1_transform.html#a1422c82230a53bddbae98565592acb1b',1,'Kiwi::Transform']]],
-  ['triangles',['triangles',['../class_kiwi_1_1_mesh.html#a8aa830f3f39bda1a84f68317c618f15d',1,'Kiwi::Mesh']]],
-  ['type',['type',['../struct_kiwi_1_1glsl_var_info.html#a738688a776cd2ea8207e60f0d1f3b149',1,'Kiwi::glslVarInfo']]],
-  ['typemap',['TypeMap',['../class_kiwi_1_1_type_map.html',1,'Kiwi::TypeMap'],['../class_kiwi_1_1_type_map.html#abfe374cdd69f64d2b60331463e815c95',1,'Kiwi::TypeMap::TypeMap()']]],
-  ['typemap_2ecpp',['TypeMap.cpp',['../_type_map_8cpp.html',1,'']]],
-  ['typemap_2eh',['TypeMap.h',['../_type_map_8h.html',1,'']]]
+  ['servicelocator',['ServiceLocator',['../class_kiwi_1_1_service_locator.html',1,'Kiwi']]],
+  ['servicelocator_2ecpp',['ServiceLocator.cpp',['../_service_locator_8cpp.html',1,'']]],
+  ['servicelocator_2eh',['ServiceLocator.h',['../_service_locator_8h.html',1,'']]],
+  ['setparent',['SetParent',['../class_kiwi_1_1_game_object.html#adfdc8f5bd9cdb68f175eab03e1f0a27a',1,'Kiwi::GameObject']]],
+  ['setposition',['SetPosition',['../class_kiwi_1_1_transform.html#a95f5bf0254aeefa44602c3b2fa4f61f0',1,'Kiwi::Transform']]],
+  ['setrotation',['SetRotation',['../class_kiwi_1_1_transform.html#ad1e109d9779c4eefc83360ebd397be06',1,'Kiwi::Transform']]],
+  ['setscale',['SetScale',['../class_kiwi_1_1_transform.html#ac8f9122e5ccce1d26c1f2b54b56e5228',1,'Kiwi::Transform']]],
+  ['setuniform',['setUniform',['../class_kiwi_1_1_shader_program.html#a4cf1bc7fd46c0269d9da6d74b99331d7',1,'Kiwi::ShaderProgram']]],
+  ['setuptest',['setUpTest',['../main_8cpp.html#acc3fbfa2abac6c83e854c05f8a776686',1,'main.cpp']]],
+  ['shader',['shader',['../class_kiwi_1_1_material.html#aca916789638975662a1c99df168efe1e',1,'Kiwi::Material']]],
+  ['shaderlibrary',['ShaderLibrary',['../namespace_kiwi.html#a9f85a6e909191f1c2eba4d766990b451',1,'Kiwi']]],
+  ['shaderprogram',['ShaderProgram',['../class_kiwi_1_1_shader_program.html',1,'Kiwi::ShaderProgram'],['../class_kiwi_1_1_shader_program.html#a4871a5af33cb16fea5dfbae43bec8bab',1,'Kiwi::ShaderProgram::ShaderProgram(const String &amp;name)'],['../class_kiwi_1_1_shader_program.html#ac408e35d560a3257231e0edefd7aaa99',1,'Kiwi::ShaderProgram::ShaderProgram(const ShaderProgram &amp;other)=delete']]],
+  ['shaderprogram_2ecpp',['ShaderProgram.cpp',['../_shader_program_8cpp.html',1,'']]],
+  ['shaderprogram_2eh',['ShaderProgram.h',['../_shader_program_8h.html',1,'']]],
+  ['shadertype',['ShaderType',['../namespace_kiwi.html#afe2af4f265774519be3ebe1368f3dbf8',1,'Kiwi']]],
+  ['string',['String',['../util_8h.html#a5573b97b9e5129f61d289e037d7e806c',1,'util.h']]],
+  ['swap',['swap',['../class_kiwi_1_1_game_object.html#a2309e565471617f0288a3650abeff3a8',1,'Kiwi::GameObject']]]
 ];

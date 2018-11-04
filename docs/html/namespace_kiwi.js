@@ -1,5 +1,6 @@
 var namespace_kiwi =
 [
+    [ "Camera", "class_kiwi_1_1_camera.html", "class_kiwi_1_1_camera" ],
     [ "Component", "class_kiwi_1_1_component.html", "class_kiwi_1_1_component" ],
     [ "ComponentRegistrar", "struct_kiwi_1_1_component_registrar.html", null ],
     [ "GameObject", "class_kiwi_1_1_game_object.html", "class_kiwi_1_1_game_object" ],

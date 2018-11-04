@@ -82,13 +82,7 @@
         <section id="pub-attribs">
           <h2><a href="#pub-attribs">Public variables</a></h2>
           <dl class="m-dox">
-            <dt><a href="util_8h.html#a81fe4d2f62958ae48f36d6a3beb16bb1" class="m-dox">Vector</a>&lt;<a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a>&gt; <a href="#aa56564d912037ce90336fed8581c2c18" class="m-dox">vertices</a></dt>
-            <dd></dd>
-            <dt><a href="util_8h.html#a81fe4d2f62958ae48f36d6a3beb16bb1" class="m-dox">Vector</a>&lt;<a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a>&gt; <a href="#aae3c5d6bd0a96a3b65536f69565a49a3" class="m-dox">normals</a></dt>
-            <dd></dd>
-            <dt><a href="util_8h.html#a81fe4d2f62958ae48f36d6a3beb16bb1" class="m-dox">Vector</a>&lt;<a href="util_8h.html#ab13fcf529046c79a4544246bf8e28741" class="m-dox">Vector2</a>&gt; <a href="#a7ff31a63bcda4f4539b39673d4e6cd51" class="m-dox">uv</a></dt>
-            <dd></dd>
-            <dt><a href="util_8h.html#a81fe4d2f62958ae48f36d6a3beb16bb1" class="m-dox">Vector</a>&lt;int&gt; <a href="#a8aa830f3f39bda1a84f68317c618f15d" class="m-dox">triangles</a></dt>
+            <dt><a href="util_8h.html#a81fe4d2f62958ae48f36d6a3beb16bb1" class="m-dox">Vector</a>&lt;unsigned int&gt; <a href="#a59ca7e7262004b0ef27037f95746b318" class="m-dox">indices</a></dt>
             <dd></dd>
             <dt><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> <a href="#a3a6813a6984e506c5364180bbc61fff9" class="m-dox">name</a></dt>
             <dd></dd>
@@ -115,7 +109,7 @@
             <h3>
               <span class="m-dox-wrap-bumper">void Kiwi::<wbr />Mesh::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#ac4c8288f67f4db1395b9a50910ffb493" class="m-dox-self">prepareToDraw</a>(</span><span class="m-dox-wrap">)</span></span>
             </h3>
-<p>Create a vertex array object and VBOs for position, normal, and texture coordinates. Copies data from <a href="class_kiwi_1_1_mesh.html#aa56564d912037ce90336fed8581c2c18" class="m-dox">vertices</a>, <a href="class_kiwi_1_1_mesh.html#aae3c5d6bd0a96a3b65536f69565a49a3" class="m-dox">normals</a>, and <a href="class_kiwi_1_1_mesh.html#a7ff31a63bcda4f4539b39673d4e6cd51" class="m-dox">uv</a>. Index buffer is copied from <a href="class_kiwi_1_1_mesh.html#a8aa830f3f39bda1a84f68317c618f15d" class="m-dox">triangles</a>.</p>
+<p>Create a vertex array object and VBOs for position, normal, and texture coordinates. Copies data from <a href="class_kiwi_1_1_mesh.html#ae45463ff1a3cc4be3f57e5dcd6c13181" class="m-dox">vertices</a>, #normals, and #uv. Index buffer is copied from #triangles.</p>
           </div></section>
           <section class="m-dox-details" id="ab906357a9b34846b8f8fdff272ba9477"><div>
             <h3>
@@ -133,27 +127,9 @@
         </section>
         <section>
           <h2>Variable documentation</h2>
-          <section class="m-dox-details" id="aa56564d912037ce90336fed8581c2c18"><div>
+          <section class="m-dox-details" id="a59ca7e7262004b0ef27037f95746b318"><div>
             <h3>
-              <a href="util_8h.html#a81fe4d2f62958ae48f36d6a3beb16bb1" class="m-dox">Vector</a>&lt;<a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a>&gt; Kiwi::<wbr />Mesh::<wbr /><a href="#aa56564d912037ce90336fed8581c2c18" class="m-dox-self">vertices</a>
-            </h3>
-<p>Vertex positions</p>
-          </div></section>
-          <section class="m-dox-details" id="aae3c5d6bd0a96a3b65536f69565a49a3"><div>
-            <h3>
-              <a href="util_8h.html#a81fe4d2f62958ae48f36d6a3beb16bb1" class="m-dox">Vector</a>&lt;<a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a>&gt; Kiwi::<wbr />Mesh::<wbr /><a href="#aae3c5d6bd0a96a3b65536f69565a49a3" class="m-dox-self">normals</a>
-            </h3>
-<p>Vertex normals</p>
-          </div></section>
-          <section class="m-dox-details" id="a7ff31a63bcda4f4539b39673d4e6cd51"><div>
-            <h3>
-              <a href="util_8h.html#a81fe4d2f62958ae48f36d6a3beb16bb1" class="m-dox">Vector</a>&lt;<a href="util_8h.html#ab13fcf529046c79a4544246bf8e28741" class="m-dox">Vector2</a>&gt; Kiwi::<wbr />Mesh::<wbr /><a href="#a7ff31a63bcda4f4539b39673d4e6cd51" class="m-dox-self">uv</a>
-            </h3>
-<p>Vertex texture coordinates</p>
-          </div></section>
-          <section class="m-dox-details" id="a8aa830f3f39bda1a84f68317c618f15d"><div>
-            <h3>
-              <a href="util_8h.html#a81fe4d2f62958ae48f36d6a3beb16bb1" class="m-dox">Vector</a>&lt;int&gt; Kiwi::<wbr />Mesh::<wbr /><a href="#a8aa830f3f39bda1a84f68317c618f15d" class="m-dox-self">triangles</a>
+              <a href="util_8h.html#a81fe4d2f62958ae48f36d6a3beb16bb1" class="m-dox">Vector</a>&lt;unsigned int&gt; Kiwi::<wbr />Mesh::<wbr /><a href="#a59ca7e7262004b0ef27037f95746b318" class="m-dox-self">indices</a>
             </h3>
 <p>Face indices</p>
           </div></section>

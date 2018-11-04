@@ -60,7 +60,7 @@
             </li>
           </ul>
         </div>
-<p>Base class for everything attached to <a href="class_kiwi_1_1_game_object.html" class="m-dox">GameObjects</a>. All subclasses must include the macro <code>K_COMPONENT_H</code> as following.</p><p>In <code>DerivedComponent.h</code></p><pre class="m-code"><span class="k">class</span> <span class="nc">DerivedComponent</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Component</span> <span class="p">{</span>
+<p>Base class for everything attached to <a href="class_kiwi_1_1_game_object.html" class="m-dox">GameObjects</a>. All non-abstract subclasses must include the macro <code>K_COMPONENT_H</code> as following.</p><p>In <code>DerivedComponent.h</code></p><pre class="m-code"><span class="k">class</span> <span class="nc">DerivedComponent</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Component</span> <span class="p">{</span>
     <span class="n">K_COMPONENT_H</span><span class="p">(</span><span class="n">DerivedComponent</span><span class="p">)</span>
     <span class="p">...</span>
 <span class="p">}</span></pre><p>In addition, in the source (*.cpp) file for the <a href="class_kiwi_1_1_component.html" class="m-dox">Component</a> subclass, the macro <code>K_COMPONENT_S</code> must be included as following.</p><p>In <code>DerivedComponent.cpp</code></p><pre class="m-code"><span class="n">K_COMPONENT_S</span><span class="p">(</span><span class="n">DerivedComponent</span><span class="p">)</span></pre><p>All subclasses must implement <a href="class_kiwi_1_1_component.html#aac75e520aead9fbdcbd1f7006b3583ba" class="m-dox">clone()</a>.</p>
