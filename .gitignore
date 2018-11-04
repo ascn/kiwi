@@ -45,7 +45,7 @@ build*
 build/
 .idea/
 .vs/
-doc/latex/
-doc/xml/
+docs/latex/
+docs/xml/
 Doxyfile-mcss
 m.css/
