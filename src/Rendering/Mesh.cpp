@@ -1,7 +1,7 @@
-#include "Mesh.h"
-#include "ServiceLocator.h"
+#include "Rendering/Mesh.h"
+#include "Core/ServiceLocator.h"
 #include "Logger.h"
-#include "MeshLibrary.h"
+#include "Rendering/MeshLibrary.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>

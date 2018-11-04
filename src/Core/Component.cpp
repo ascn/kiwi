@@ -1,4 +1,4 @@
-#include "Component.h"
+#include "Core/Component.h"
 
 namespace Kiwi {
 

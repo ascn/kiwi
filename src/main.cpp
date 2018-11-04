@@ -2,13 +2,13 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-#include "GameObject.h"
-#include "ServiceLocator.h"
+#include "Core/GameObject.h"
+#include "Core/ServiceLocator.h"
 #include "Logger.h"
-#include "ShaderProgram.h"
-#include "Mesh.h"
-#include "Renderer.h"
-#include "MeshRenderer.h"
+#include "Rendering/ShaderProgram.h"
+#include "Rendering/Mesh.h"
+#include "Rendering/Renderer.h"
+#include "Rendering/MeshRenderer.h"
 
 int mainInit() {
 	try {
@@ -36,8 +36,8 @@ int mainTerminate() {
 void setUpTest() {
 	try {
 		Kiwi::ShaderProgram *testShader = new Kiwi::ShaderProgram("TestShader");
-		testShader->loadShader(Kiwi::ShaderType::VERTEX_SHADER, "../../src/vert.glsl");
-		testShader->loadShader(Kiwi::ShaderType::FRAGMENT_SHADER, "../../src/frag.glsl");
+		testShader->loadShader(Kiwi::ShaderType::VERTEX_SHADER, "../../src/Shaders/vert.glsl");
+		testShader->loadShader(Kiwi::ShaderType::FRAGMENT_SHADER, "../../src/Shaders/frag.glsl");
 		testShader->linkProgram();
 		Kiwi::Material *testMat = new Kiwi::Material(*testShader);
 

@@ -1,6 +1,6 @@
 #include <sstream>
 
-#include "ServiceLocator.h"
+#include "Core/ServiceLocator.h"
 #include "Logger.h"
 
 namespace Kiwi {

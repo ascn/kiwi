@@ -1,7 +1,7 @@
 #ifndef __MESH_RENDERER_H__
 #define __MESH_RENDERER_H__
 
-#include "Renderer.h"
+#include "Rendering/Renderer.h"
 
 namespace Kiwi {
 

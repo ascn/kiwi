@@ -4,7 +4,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <gtx/transform.hpp>
 #include "util.h"
-#include "Component.h"
+#include "Core/Component.h"
 
 namespace Kiwi {
 

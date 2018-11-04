@@ -3,9 +3,9 @@
 
 #include <stack>
 #include "util.h"
-#include "Object.h"
-#include "Component.h"
-#include "ServiceLocator.h"
+#include "Core/Object.h"
+#include "Core/Component.h"
+#include "Core/ServiceLocator.h"
 #include "Logger.h"
 
 namespace Kiwi {

@@ -2,8 +2,8 @@
 #define __COMPONENT_H__
 
 #include "util.h"
-#include "TypeMap.h"
-#include "Object.h"
+#include "Core/TypeMap.h"
+#include "Core/Object.h"
 #include "Logger.h"
 
 namespace Kiwi {

@@ -1,6 +1,6 @@
 #include <stack>
-#include "GameObject.h"
-#include "Transform.h"
+#include "Core/GameObject.h"
+#include "Scene/Transform.h"
 
 namespace Kiwi {
 

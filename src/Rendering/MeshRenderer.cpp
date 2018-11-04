@@ -1,7 +1,7 @@
-#include "GameObject.h"
-#include "Component.h"
-#include "Mesh.h"
-#include "MeshRenderer.h"
+#include "Core/GameObject.h"
+#include "Core/Component.h"
+#include "Rendering/Mesh.h"
+#include "Rendering/MeshRenderer.h"
 
 namespace Kiwi {
 

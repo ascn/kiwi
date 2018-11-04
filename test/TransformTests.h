@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "Component.h"
+#include "Core/Component.h"
 #include "Transform.h"
 #include "ServiceLocator.h"
 

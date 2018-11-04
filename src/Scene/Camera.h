@@ -2,7 +2,7 @@
 #define __CAMERA_H__
 
 #include "util.h"
-#include "Component.h"
+#include "Core/Component.h"
 
 namespace Kiwi {
 

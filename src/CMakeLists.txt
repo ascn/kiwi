@@ -1,4 +1,4 @@
-file(GLOB KIWI_SRC
+file(GLOB_RECURSE KIWI_SRC
 	"*.h"
 	"*.cpp")
 

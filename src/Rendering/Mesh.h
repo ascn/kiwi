@@ -4,8 +4,8 @@
 #include <GL/glew.h>
 
 #include "util.h"
-#include "Object.h"
-#include "Component.h"
+#include "Core/Object.h"
+#include "Core/Component.h"
 
 namespace Kiwi {
 

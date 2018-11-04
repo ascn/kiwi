@@ -1,6 +1,6 @@
-#include "MeshLibrary.h"
-#include "Mesh.h"
-#include "ServiceLocator.h"
+#include "Rendering/MeshLibrary.h"
+#include "Rendering/Mesh.h"
+#include "Core/ServiceLocator.h"
 
 namespace Kiwi {
 

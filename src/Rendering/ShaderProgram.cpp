@@ -2,8 +2,8 @@
 #include <sstream>
 #include <fstream>
 
-#include "ShaderProgram.h"
-#include "ServiceLocator.h"
+#include "Rendering/ShaderProgram.h"
+#include "Core/ServiceLocator.h"
 
 namespace Kiwi {
 

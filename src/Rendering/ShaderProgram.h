@@ -3,7 +3,7 @@
 
 #include <GL/glew.h>
 #include "util.h"
-#include "Object.h"
+#include "Core/Object.h"
 
 namespace Kiwi {
 
