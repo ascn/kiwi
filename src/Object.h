@@ -4,8 +4,14 @@
 #include <iostream>
 #include "util.h"
 
+/** @namespace Kiwi
+ * @brief Class @ref Object
+ */
 namespace Kiwi {
 
+/**
+ * Base class for everything referenced by Kiwi.
+ */
 class Object {
 public:
 	Object() : name("") {}

@@ -1,6 +1,13 @@
 #include <gtest/gtest.h>
 #include "Component.h"
 #include "Transform.h"
+#include "ServiceLocator.h"
+
+#define ASSERT_VEC3_EQ(u, v, epsilon) \
+Vector3 diff = glm::abs((u) - (v)); \
+ASSERT_LT(diff.x, epsilon); \
+ASSERT_LT(diff.y, epsilon); \
+ASSERT_LT(diff.z, epsilon);
 
 using namespace Kiwi;
 
@@ -14,7 +21,7 @@ K_COMPONENT_H(TestComponent_1)
 		return new TestComponent_1();
 	}
 };
-K_COMPONENT_S(TestComponent_1, "TestComponent_1")
+K_COMPONENT_S(TestComponent_1)
 
 TEST(TransformTest, CloneTransformTest) {
 	Transform *transform = new Transform();
@@ -29,11 +36,23 @@ TEST(TransformTest, CloneTransformTest) {
 
 TEST(TransformTest, TransformDirectionTest) {
 	Transform *transform = new Transform();
-	transform->SetPosition()
+	transform->SetPosition(Vector3(0, 1, 0));
+	transform->SetRotation(Vector3(0, 0, 30));
+	Vector3 dir = Vector3(0, 2, 0);
+	Vector3 transformed = transform->TransformDirection(dir);
+	ASSERT_VEC3_EQ(Vector3(-1, 1.732051, 0), transformed, 1e-5);
+}
+
+TEST(TransformTest, LookAtTest) {
+	Transform *transform = new Transform();
+	transform->SetPosition(Vector3(1, 0, 0));
+	transform->LookAt(Vector3(0, 0, 0), Transform::worldUp);
+	Transform *freshTransform = new Transform();
+	freshTransform->Rotate(Vector3(0, 90, 0));
 }
 
 int main(int argc, char **argv) {
 	::testing::InitGoogleTest(&argc, argv);
-	Kiwi::Logger::Initialize();
+	Kiwi::ServiceLocator::initLoggers();
 	return RUN_ALL_TESTS();
 }

@@ -5,15 +5,21 @@
 #include "util.h"
 #include "Object.h"
 #include "Component.h"
+#include "ServiceLocator.h"
+#include "Logger.h"
 
 namespace Kiwi {
 
 /**
- * Base class for all entities.
+ * Base class for all entities in the scene.
  */
 class GameObject : public Object {
 public:
 	GameObject(String name);
+	GameObject(const GameObject &other);
+	GameObject(GameObject &&other);
+	virtual ~GameObject();
+	GameObject &operator=(GameObject other);
 
 	// Vector of components
 	Vector<Component *> components;
@@ -24,10 +30,12 @@ public:
 	Vector<GameObject *> children;
 
 	/** @name AddComponent
-	 * Add a new component of the specified type to th is game object and
+	 * Add a new component of the specified type to this game object and
 	 * return a pointer to the new component. It is recommended to use the
 	 * templatized function. Otherwise, the returned pointer should be
 	 * casted to the desired type.
+	 * If the type does not exist, or is not a Component, then this
+	 * GameObject is not modified and nullptr is returned.
 	 */
 	/**@{*/
 	/**
@@ -113,36 +121,61 @@ public:
 	template <class T>
 	void GetComponentsInChildren(Vector<T *> &components);
 
-	void GetComponentsInChildren(const String &type, Vector<Component *> &components);
+	void GetComponentsInChildren(const String &type,
+								 Vector<Component *> &components);
 	/**@}*/
 
 	/**@{*/
 	template <class T>
 	void GetComponentsInParent(Vector<T *> &components);
 
-	void GetComponentsInParent(const String &type, Vector<Component *> &components);
+	void GetComponentsInParent(const String &type,
+							   Vector<Component *> &components);
 	/**@}*/
 
 	void SetParent(GameObject *parent);
+
+	virtual GameObject *clone() const;
+
+	friend void swap(GameObject &first, GameObject &second) {
+		using std::swap;
+
+		swap(first.name, second.name);
+		swap(first.children, second.children);
+		swap(first.components, second.components);
+		swap(first.parent, second.parent);
+	}
 };
 
 template <class T>
 T *GameObject::AddComponent() {
-	Component *newComp = Component::getPrototypes().at(typeid(T))->clone();
-	GameObject::components.push_back(newComp);
-	newComp->gameObject = this;
-	return static_cast<T *>(newComp);
+	T *ret = nullptr;
+	try {
+		Component *newComp = Component::getPrototypes().at(typeid(T))->clone();
+		GameObject::components.push_back(newComp);
+		newComp->gameObject = this;
+		ret = static_cast<T *>(newComp);
+	} catch (std::exception &e) {
+		ServiceLocator::getLogger().Log(e.what());
+	}
+	return ret;
 }
 
 template <class T>
 T *GameObject::GetComponent() {
-	std::type_index idx = typeid(T);
-	for (auto &comp : components) {
-		if (comp->getType() == idx) {
-			return static_cast<T *>(comp);
+	T *ret = nullptr;
+	try {
+		std::type_index idx = typeid(T);
+		for (auto &comp : components) {
+			if (comp->getType() == idx) {
+				ret = static_cast<T *>(comp);
+				break;
+			}
 		}
+	} catch (std::exception &e) {
+		ServiceLocator::getLogger().Log(e.what());
 	}
-	return nullptr;
+	return ret;
 }
 
 template <class T>
@@ -154,7 +187,7 @@ T *GameObject::GetComponentInChildren() {
 		GameObject *currObj = stack.top();
 		stack.pop();
 		if ((ret = currObj->GetComponent<T>()) != nullptr) {
-			return ret;
+			break;
 		}
 		for (auto &child : currObj->children) {
 			stack.push(child);

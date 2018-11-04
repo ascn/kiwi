@@ -1,5 +1,6 @@
 #include <stack>
 #include "GameObject.h"
+#include "Transform.h"
 
 namespace Kiwi {
 
@@ -8,24 +9,77 @@ GameObject::GameObject(String name) :
 	components(),
 	parent(nullptr),
 	children()
-	{}
+{
+	AddComponent<Transform>();
+}
+
+GameObject::GameObject(const GameObject &other) :
+	Object(other.name),
+	components(other.components.size()),
+	parent(other.parent),
+	children(other.children.size())
+{
+	for (int i = 0; i < other.components.size(); ++i) {
+		components[i] = other.components[i]->clone();
+	}
+
+	for (int i = 0; i < other.children.size(); ++i) {
+		children[i] = other.children[i]->clone();
+	}
+}
+
+GameObject *GameObject::clone() const {
+	return new GameObject(*this);
+}
+
+GameObject::GameObject(GameObject &&other) :
+	GameObject(other.name)
+{
+	swap(*this, other);
+}
+
+GameObject::~GameObject() {
+	for (auto &comp : components) {
+		delete comp;
+	}
+	for (auto &child : children) {
+		delete child;
+	}
+}
+
+GameObject &GameObject::operator=(GameObject other) {
+	swap(*this, other);
+	return *this;
+}
 
 Component *GameObject::AddComponent(const String &type) {
-	std::type_index idx = Component::getRegistry().get(type);
-	Component *newComp = Component::getPrototypes().at(idx)->clone();
-	GameObject::components.push_back(newComp);
-	newComp->gameObject = this;
-	return newComp;
+	Component *ret = nullptr;
+	try {
+		std::type_index idx = Component::getRegistry().get(type);
+		Component *newComp = Component::getPrototypes().at(idx)->clone();
+		GameObject::components.push_back(newComp);
+		newComp->gameObject = this;
+		ret = newComp;
+	} catch (std::exception &e) {
+		ServiceLocator::getLogger().Log(e.what());
+	}
+	return ret;
 }
 
 Component *GameObject::GetComponent(const String &type) {
-	std::type_index idx = Component::getRegistry().get(type);
-	for (auto &comp : components) {
-		if (comp->getType() == idx) {
-			return comp;
+	Component *ret = nullptr;
+	try {
+		std::type_index idx = Component::getRegistry().get(type);
+		for (auto &comp : components) {
+			if (comp->getType() == idx) {
+				ret = comp;
+				break;
+			}
 		}
+	} catch (std::exception &e) {
+		ServiceLocator::getLogger().Log(e.what());
 	}
-	return nullptr;
+	return ret;
 }
 
 Component *GameObject::GetComponentInChildren(const String &type) {
@@ -36,7 +90,7 @@ Component *GameObject::GetComponentInChildren(const String &type) {
 		GameObject *currObj = stack.top();
 		stack.pop();
 		if ((ret = currObj->GetComponent(type)) != nullptr) {
-			return ret;
+			break;
 		}
 		for (auto &child : currObj->children) {
 			stack.push(child);

@@ -1,16 +1,16 @@
 find_package(Threads REQUIRED)
 
 # Download and unpack googletest at configure time
-configure_file(googletest.cmake ${EXTERNAL}/googletest-download/CMakeLists.txt)
+configure_file(googletest.cmake ${EXTERNAL}/googletest/googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
   RESULT_VARIABLE result
-  WORKING_DIRECTORY ${EXTERNAL}/googletest-download )
+  WORKING_DIRECTORY ${EXTERNAL}/googletest/googletest-download )
 if(result)
   message(FATAL_ERROR "CMake step for googletest failed: ${result}")
 endif()
 execute_process(COMMAND ${CMAKE_COMMAND} --build .
   RESULT_VARIABLE result
-  WORKING_DIRECTORY ${EXTERNAL}/googletest-download )
+  WORKING_DIRECTORY ${EXTERNAL}/googletest/googletest-download )
 if(result)
   message(FATAL_ERROR "Build step for googletest failed: ${result}")
 endif()
@@ -21,8 +21,8 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 # Add googletest directly to our build. This defines
 # the gtest and gtest_main targets.
-add_subdirectory(${EXTERNAL}/googletest-src
-                 ${EXTERNAL}/googletest-build
+add_subdirectory(${EXTERNAL}/googletest/googletest-src
+                 ${EXTERNAL}/googletest/googletest-build
                  EXCLUDE_FROM_ALL)
 
 # The gtest/gtest_main targets carry header search path
@@ -32,31 +32,19 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
   include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
-add_executable(
-        ComponentTests
-        ComponentTest.cpp
-        ${SRC}/Component.cpp
-        ${SRC}/TypeMap.cpp
-        ${SRC}/GameObject.cpp
-        ${SRC}/Logger.cpp
-)
-target_link_libraries(ComponentTests gtest gtest_main pthread)
+file(GLOB KIWI_SRC
+     "../src/*.h"
+     "../src/*.cpp")
+list(REMOVE_ITEM KIWI_SRC "${TEST}/../src/main.cpp")
 
 add_executable(
-        GameObjectTests
-        GameObjectTest.cpp
-        ${SRC}/Component.cpp
-        ${SRC}/TypeMap.cpp
-        ${SRC}/GameObject.cpp
+        tests
+        TestSuite.cpp
+        ${KIWI_SRC}
 )
-target_link_libraries(GameObjectTests gtest gtest_main pthread)
-
-add_executable(
-        TransformTests
-        TransformTest.cpp
-        ${SRC}/Transform.cpp
-        ${SRC}/Component.cpp
-        ${SRC}/Logger.cpp
-        ${SRC}/TypeMap.cpp
-)
-target_link_libraries(TransformTests gtest gtest_main pthread)
+if (WIN32)
+target_link_libraries(tests assimp gtest gtest_main pthread-win)
+elseif (UNIX)
+target_link_libraries(tests assimp gtest gtest_main pthread)
+endif (WIN32)
+add_dependencies(tests assimp glm spdlog)

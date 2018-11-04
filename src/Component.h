@@ -14,29 +14,32 @@ using ComponentPrototypes = std::unordered_map<std::type_index, Component *>;
 
 /**
  * Base class for everything attached to @link GameObject GameObjects@endlink.
- * All subclasses must include the macro <code>K_COMPONENT_H</code> as following.
+ * All non-abstract subclasses must include the macro <code>K_COMPONENT_H</code>
+ * as following.
  *
  * In <code>DerivedComponent.h</code>
- * <pre>
+ * 
+ * @code{.cpp}
  * class DerivedComponent : public Component {
  *     K_COMPONENT_H(DerivedComponent)
  *     ...
  * }
- * </pre>
+ * @endcode
  * 
  * In addition, in the source (*.cpp) file for the Component subclass,
  * the macro <code>K_COMPONENT_S</code> must be included as following.
  *
  * In <code>DerivedComponent.cpp</code>
- * <pre>
- * %K_COMPONENT_S(DerivedComponent, "DerivedComponent")
- * </pre>
- * A default constructor cannot be provided for any subclasses. Provide a
- * constructor taking in a single String argument for the name of the Object.
+ * 
+ * @code{.cpp}
+ * K_COMPONENT_S(DerivedComponent)
+ * @endcode
+ *
+ * All subclasses must implement clone().
  */
 class Component : public Object {
+	friend GameObject;
 public:
-	Component() : gameObject(nullptr) {}
 	virtual ~Component() = 0;
 
 	/**
@@ -44,6 +47,10 @@ public:
 	 * of Component must implement this. This is used
 	 * in conjunction with the prototype map and registry
 	 * to dynamically create instances of Component subclasses.
+	 *
+	 * The implementation does not have to copy the \p gameObject
+	 * member, as this method will be used to add the component
+	 * to a new GameObject.
 	 * @return
 	 */
 	virtual Component *clone() = 0;
@@ -59,9 +66,19 @@ public:
 		static TypeMap registry;
 		return registry;
 	}
-	static ComponentPrototypes &getPrototypes() { static ComponentPrototypes prototypes; return prototypes; }
+	static ComponentPrototypes &getPrototypes() {
+		static ComponentPrototypes prototypes;
+		return prototypes;
+	}
 
+	/**
+	 * Pointer to the GameObject that this Component
+	 * is attached to.
+	 */
 	GameObject *gameObject;
+
+protected:
+	Component() : gameObject(nullptr) {}
 };
 
 template <typename T>
@@ -82,7 +99,7 @@ private: \
 public: \
 	std::type_index getType() override { return type; }
 
-#define K_COMPONENT_S(Type, String) \
-std::type_index Type::type = ComponentRegistrar<Type>::registerComponent(String);
+#define K_COMPONENT_S(Type) \
+std::type_index Type::type = ComponentRegistrar<Type>::registerComponent(#Type);
 
 #endif // __COMPONENT_H__

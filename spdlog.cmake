@@ -2,7 +2,7 @@ include(ExternalProject)
 ExternalProject_Add(spdlog
     PREFIX            ${EXTERNAL}/spdlog
     GIT_REPOSITORY    https://github.com/gabime/spdlog.git
-    GIT_TAG           master
+    GIT_TAG           v1.1.0
     CONFIGURE_COMMAND ""
     BUILD_COMMAND     ""
     INSTALL_COMMAND   ""
