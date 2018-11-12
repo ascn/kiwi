@@ -55,6 +55,7 @@
                 <li><a href="#base-classes">Base classes</a></li>
                 <li><a href="#typeless-methods">Constructors, destructors, conversion operators</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
+                <li><a href="#setuniform">setUniform</a></li>
               </ul>
             </li>
           </ul>
@@ -97,6 +98,57 @@
             <dd></dd>
             <dt>
               <span class="m-dox-wrap-bumper">void <a href="#a13609867e655d24d28cf032154ff6e82" class="m-dox">useProgram</a>(</span><span class="m-dox-wrap">)</span>
+            </dt>
+            <dd></dd>
+          </dl>
+        </section>
+        <section id="setuniform">
+          <h2><a href="#setuniform">setUniform</a></h2>
+<p>Sets the value of the uniform specified by the name.</p><p>If the uniform variable does not exist, the program is not modified. If the value passed in does not the type of the uniform variable, the program is not modified.</p>
+          <dl class="m-dox">
+            <dt>
+              <span class="m-dox-wrap-bumper">void <a href="#a9d5c86fde3e1293dd406e3a0c2ccade2" class="m-dox">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              float val)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">void <a href="#a0854cf20ff86d9fbc5e66afbf986bc71" class="m-dox">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#ab13fcf529046c79a4544246bf8e28741" class="m-dox">Vector2</a> val)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">void <a href="#abccbe67c798d71d834b535c7c8ce9522" class="m-dox">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> val)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">void <a href="#a3154fbcb9d08d8f0867fe524cd6a93a4" class="m-dox">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#ab3687d6d34e957e1842711a8e39c5d47" class="m-dox">Vector4</a> val)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">void <a href="#afbffb31b77dc14648a2c90619264d58c" class="m-dox">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              int val)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">void <a href="#aad847ab90796922a82c05fcdd63fbcd9" class="m-dox">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#a2c89fbc0aa22b0d9db9ebd5f65b8eadb" class="m-dox">IVector2</a> val)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">void <a href="#a92291560bae5b7082acc29d07919866b" class="m-dox">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#a762623ba382dd47e0d2f9ea7516b78ff" class="m-dox">IVector3</a> val)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">void <a href="#a04d277f12b4fbd43afe78bad9bebce68" class="m-dox">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#a3492e80992b70e4600e3c8db83e45724" class="m-dox">IVector4</a> val)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">void <a href="#a6f2e054593abd4df5878898667c58a2a" class="m-dox">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#a69a3df65e57f3ed0f28e31b3146b666d" class="m-dox">Matrix4</a> val)</span>
             </dt>
             <dd></dd>
           </dl>
@@ -188,6 +240,204 @@
               </tbody>
             </table>
 <p>Use this program in the current OpenGL rendering context. If this program is not already linked, then an std::runtime_error is thrown.</p>
+          </div></section>
+          <section class="m-dox-details" id="a9d5c86fde3e1293dd406e3a0c2ccade2"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper">void Kiwi::<wbr />ShaderProgram::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#a9d5c86fde3e1293dd406e3a0c2ccade2" class="m-dox-self">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              float val)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">name</td>
+                  <td>the name of the uniform to set</td>
+                </tr>
+                <tr>
+                  <td>val</td>
+                  <td>the value to set</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Overload for setUniform for float uniforms</p>
+          </div></section>
+          <section class="m-dox-details" id="a0854cf20ff86d9fbc5e66afbf986bc71"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper">void Kiwi::<wbr />ShaderProgram::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#a0854cf20ff86d9fbc5e66afbf986bc71" class="m-dox-self">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#ab13fcf529046c79a4544246bf8e28741" class="m-dox">Vector2</a> val)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">name</td>
+                  <td>the name of the uniform to set</td>
+                </tr>
+                <tr>
+                  <td>val</td>
+                  <td>the value to set</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Overload for setUniform for vec2 uniforms</p>
+          </div></section>
+          <section class="m-dox-details" id="abccbe67c798d71d834b535c7c8ce9522"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper">void Kiwi::<wbr />ShaderProgram::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#abccbe67c798d71d834b535c7c8ce9522" class="m-dox-self">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> val)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">name</td>
+                  <td>the name of the uniform to set</td>
+                </tr>
+                <tr>
+                  <td>val</td>
+                  <td>the value to set</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Overload for setUniform for vec3 uniforms</p>
+          </div></section>
+          <section class="m-dox-details" id="a3154fbcb9d08d8f0867fe524cd6a93a4"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper">void Kiwi::<wbr />ShaderProgram::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#a3154fbcb9d08d8f0867fe524cd6a93a4" class="m-dox-self">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#ab3687d6d34e957e1842711a8e39c5d47" class="m-dox">Vector4</a> val)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">name</td>
+                  <td>the name of the uniform to set</td>
+                </tr>
+                <tr>
+                  <td>val</td>
+                  <td>the value to set</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Overload for setUniform for vec4 uniforms</p>
+          </div></section>
+          <section class="m-dox-details" id="afbffb31b77dc14648a2c90619264d58c"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper">void Kiwi::<wbr />ShaderProgram::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#afbffb31b77dc14648a2c90619264d58c" class="m-dox-self">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              int val)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">name</td>
+                  <td>the name of the uniform to set</td>
+                </tr>
+                <tr>
+                  <td>val</td>
+                  <td>the value to set</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Overload for setUniform for int uniforms</p>
+          </div></section>
+          <section class="m-dox-details" id="aad847ab90796922a82c05fcdd63fbcd9"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper">void Kiwi::<wbr />ShaderProgram::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#aad847ab90796922a82c05fcdd63fbcd9" class="m-dox-self">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#a2c89fbc0aa22b0d9db9ebd5f65b8eadb" class="m-dox">IVector2</a> val)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">name</td>
+                  <td>the name of the uniform to set</td>
+                </tr>
+                <tr>
+                  <td>val</td>
+                  <td>the value to set</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Overload for setUniform for ivec2 uniforms</p>
+          </div></section>
+          <section class="m-dox-details" id="a92291560bae5b7082acc29d07919866b"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper">void Kiwi::<wbr />ShaderProgram::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#a92291560bae5b7082acc29d07919866b" class="m-dox-self">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#a762623ba382dd47e0d2f9ea7516b78ff" class="m-dox">IVector3</a> val)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">name</td>
+                  <td>the name of the uniform to set</td>
+                </tr>
+                <tr>
+                  <td>val</td>
+                  <td>the value to set</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Overload for setUniform for ivec3 uniforms</p>
+          </div></section>
+          <section class="m-dox-details" id="a04d277f12b4fbd43afe78bad9bebce68"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper">void Kiwi::<wbr />ShaderProgram::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#a04d277f12b4fbd43afe78bad9bebce68" class="m-dox-self">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#a3492e80992b70e4600e3c8db83e45724" class="m-dox">IVector4</a> val)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">name</td>
+                  <td>the name of the uniform to set</td>
+                </tr>
+                <tr>
+                  <td>val</td>
+                  <td>the value to set</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Overload for setUniform for ivec4 uniforms</p>
+          </div></section>
+          <section class="m-dox-details" id="a6f2e054593abd4df5878898667c58a2a"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper">void Kiwi::<wbr />ShaderProgram::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#a6f2e054593abd4df5878898667c58a2a" class="m-dox-self">setUniform</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a5573b97b9e5129f61d289e037d7e806c" class="m-dox">String</a> name,
+              <a href="util_8h.html#a69a3df65e57f3ed0f28e31b3146b666d" class="m-dox">Matrix4</a> val)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">name</td>
+                  <td>the name of the uniform to set</td>
+                </tr>
+                <tr>
+                  <td>val</td>
+                  <td>the value to set</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Overload for setUniform for mat4 uniforms</p>
           </div></section>
         </section>
       </div>

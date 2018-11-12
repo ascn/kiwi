@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['vao',['VAO',['../class_kiwi_1_1_mesh.html#af09fc882e35b688815b824094a49caed',1,'Kiwi::Mesh']]],
-  ['vbo',['VBO',['../class_kiwi_1_1_mesh.html#ac1760b268a6ba76159bfa6106f5295a3',1,'Kiwi::Mesh']]],
-  ['vertices',['vertices',['../class_kiwi_1_1_mesh.html#ae45463ff1a3cc4be3f57e5dcd6c13181',1,'Kiwi::Mesh']]]
+  ['tex',['tex',['../struct_kiwi_1_1_mesh_1_1_vertex.html#ab5f6487542b5f81dba2fa07aa1490ecd',1,'Kiwi::Mesh::Vertex']]],
+  ['type',['type',['../struct_kiwi_1_1glsl_var_info.html#a738688a776cd2ea8207e60f0d1f3b149',1,'Kiwi::glslVarInfo']]]
 ];

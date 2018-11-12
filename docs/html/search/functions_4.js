@@ -5,5 +5,5 @@ var searchData=
   ['loadshader',['loadShader',['../class_kiwi_1_1_shader_program.html#ac20c14a6145d72be2bd33d0b538b941f',1,'Kiwi::ShaderProgram']]],
   ['log',['Log',['../class_kiwi_1_1_logger.html#a05d4f4d2fdb5dc827ca2a50bfaee35ff',1,'Kiwi::Logger']]],
   ['logger',['Logger',['../class_kiwi_1_1_logger.html#ab264a521fd72440ccd950a8460cb7d98',1,'Kiwi::Logger']]],
-  ['lookat',['LookAt',['../class_kiwi_1_1_transform.html#a85247432a3629b894e9564c8902d6293',1,'Kiwi::Transform::LookAt(Vector3 target, Vector3 worldUp)'],['../class_kiwi_1_1_transform.html#a2df1469bfa29fd16d50101a8f441094e',1,'Kiwi::Transform::LookAt(Transform target, Vector3 worldUp)']]]
+  ['lookat',['LookAt',['../class_kiwi_1_1_transform.html#a731207ebe994df52ebed1170c186e403',1,'Kiwi::Transform::LookAt(Vector3 target, Vector3 worldUp=Transform::worldUp)'],['../class_kiwi_1_1_transform.html#a149eff66df75f01c4b4961479c3b63fc',1,'Kiwi::Transform::LookAt(Transform target, Vector3 worldUp=Transform::worldUp)']]]
 ];

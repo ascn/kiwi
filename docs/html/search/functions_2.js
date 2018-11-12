@@ -21,5 +21,6 @@ var searchData=
   ['getscale',['GetScale',['../class_kiwi_1_1_transform.html#aebc0101d290645095ff0331e3a0b2b5b',1,'Kiwi::Transform']]],
   ['getshaderlibrary',['getShaderLibrary',['../class_kiwi_1_1_shader_program.html#a9046ee6724d804b2dfb38e03fb844a49',1,'Kiwi::ShaderProgram']]],
   ['gettype',['getType',['../class_kiwi_1_1_component.html#a522ed54dc4a50efad0040d31a8ee5795',1,'Kiwi::Component']]],
+  ['getviewmatrix',['GetViewMatrix',['../class_kiwi_1_1_transform.html#a9c55dba21dfd62950894de679e7c82b2',1,'Kiwi::Transform']]],
   ['glfwerrorcallback',['glfwErrorCallback',['../class_kiwi_1_1_service_locator.html#a1387a68cdb6925cb8d4725300c5433b1',1,'Kiwi::ServiceLocator']]]
 ];

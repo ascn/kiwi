@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['log_5flevel',['LOG_LEVEL',['../_logger_8h.html#ac7f2cc00657f5a03dae8cb94dd83de85',1,'Logger.h']]]
+  ['componentprototypes',['ComponentPrototypes',['../namespace_kiwi.html#a237bf4f11a0d9f93c40632234d176d6d',1,'Kiwi']]]
 ];

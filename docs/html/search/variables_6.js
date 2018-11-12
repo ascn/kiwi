@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['material',['material',['../class_kiwi_1_1_renderer.html#ae06caecc7729bac4f09738cd7eb61a76',1,'Kiwi::Renderer']]],
-  ['mesh',['mesh',['../class_kiwi_1_1_mesh_filter.html#a862f1b7cb4ad8b33e097212d6713a55e',1,'Kiwi::MeshFilter']]]
+  ['level',['level',['../class_kiwi_1_1_logger.html#a8a9b7e552544662d98a4e668c791f76e',1,'Kiwi::Logger']]],
+  ['location',['location',['../struct_kiwi_1_1glsl_var_info.html#a8f72f8a8a3f98614c36a591987e2f5a8',1,'Kiwi::glslVarInfo']]]
 ];

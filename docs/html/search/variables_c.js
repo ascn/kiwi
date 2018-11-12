@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['worldforward',['worldForward',['../class_kiwi_1_1_transform.html#a0058829178a814fdc7012fc398c35c9a',1,'Kiwi::Transform']]],
-  ['worldright',['worldRight',['../class_kiwi_1_1_transform.html#a346682396af541d8569aa1766f418bd2',1,'Kiwi::Transform']]],
-  ['worldup',['worldUp',['../class_kiwi_1_1_transform.html#a071144d47c48acb2dc82581705307683',1,'Kiwi::Transform']]]
+  ['vao',['VAO',['../class_kiwi_1_1_mesh.html#af09fc882e35b688815b824094a49caed',1,'Kiwi::Mesh']]],
+  ['vbo',['VBO',['../class_kiwi_1_1_mesh.html#ac1760b268a6ba76159bfa6106f5295a3',1,'Kiwi::Mesh']]],
+  ['vertices',['vertices',['../class_kiwi_1_1_mesh.html#ae45463ff1a3cc4be3f57e5dcd6c13181',1,'Kiwi::Mesh']]]
 ];

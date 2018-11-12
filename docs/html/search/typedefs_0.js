@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['componentprototypes',['ComponentPrototypes',['../namespace_kiwi.html#a237bf4f11a0d9f93c40632234d176d6d',1,'Kiwi']]]
+  ['attribmap',['AttribMap',['../namespace_kiwi.html#ae025b6e826747e8acf1b48b5472ab2bc',1,'Kiwi']]]
 ];

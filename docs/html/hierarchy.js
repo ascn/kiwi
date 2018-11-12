@@ -1,6 +1,6 @@
 var hierarchy =
 [
-    [ "Kiwi::Camera::clipPlanes", "struct_kiwi_1_1_camera_1_1clip_planes.html", null ],
+    [ "Kiwi::Camera::ClipPlanes", "struct_kiwi_1_1_camera_1_1_clip_planes.html", null ],
     [ "Kiwi::ComponentRegistrar< T >", "struct_kiwi_1_1_component_registrar.html", null ],
     [ "Kiwi::glslVarInfo", "struct_kiwi_1_1glsl_var_info.html", null ],
     [ "Kiwi::Logger", "class_kiwi_1_1_logger.html", null ],
@@ -17,6 +17,7 @@ var hierarchy =
       [ "Kiwi::GameObject", "class_kiwi_1_1_game_object.html", null ],
       [ "Kiwi::Material", "class_kiwi_1_1_material.html", null ],
       [ "Kiwi::Mesh", "class_kiwi_1_1_mesh.html", null ],
+      [ "Kiwi::Scene", "class_kiwi_1_1_scene.html", null ],
       [ "Kiwi::ShaderProgram", "class_kiwi_1_1_shader_program.html", null ]
     ] ],
     [ "Kiwi::ServiceLocator", "class_kiwi_1_1_service_locator.html", null ],

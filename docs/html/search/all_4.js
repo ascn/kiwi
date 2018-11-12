@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['gameobject',['GameObject',['../class_kiwi_1_1_game_object.html',1,'Kiwi::GameObject'],['../class_kiwi_1_1_component.html#a35ee5319f1b634d3dbb214ba7bb04c33',1,'Kiwi::Component::gameObject()'],['../class_kiwi_1_1_game_object.html#aa9cc5d1923dc1add4d106787442db54e',1,'Kiwi::GameObject::GameObject(String name)'],['../class_kiwi_1_1_game_object.html#ac4c3ae58598911901548affc6ac1639c',1,'Kiwi::GameObject::GameObject(const GameObject &amp;other)'],['../class_kiwi_1_1_game_object.html#ac6d22ef9760d86871cbbfa4635dd9b94',1,'Kiwi::GameObject::GameObject(GameObject &amp;&amp;other)']]],
+  ['gameobject',['GameObject',['../class_kiwi_1_1_game_object.html',1,'Kiwi::GameObject'],['../class_kiwi_1_1_game_object.html#aa9cc5d1923dc1add4d106787442db54e',1,'Kiwi::GameObject::GameObject(String name)'],['../class_kiwi_1_1_game_object.html#ac4c3ae58598911901548affc6ac1639c',1,'Kiwi::GameObject::GameObject(const GameObject &amp;other)'],['../class_kiwi_1_1_game_object.html#ac6d22ef9760d86871cbbfa4635dd9b94',1,'Kiwi::GameObject::GameObject(GameObject &amp;&amp;other)'],['../class_kiwi_1_1_component.html#a35ee5319f1b634d3dbb214ba7bb04c33',1,'Kiwi::Component::gameObject()']]],
   ['gameobject_2ecpp',['GameObject.cpp',['../_game_object_8cpp.html',1,'']]],
   ['gameobject_2eh',['GameObject.h',['../_game_object_8h.html',1,'']]],
   ['geometry_5fshader',['GEOMETRY_SHADER',['../namespace_kiwi.html#afe2af4f265774519be3ebe1368f3dbf8aa722bdad7ad66e0cd0297ddc6d5c50aa',1,'Kiwi']]],
@@ -24,7 +24,8 @@ var searchData=
   ['getscale',['GetScale',['../class_kiwi_1_1_transform.html#aebc0101d290645095ff0331e3a0b2b5b',1,'Kiwi::Transform']]],
   ['getshaderlibrary',['getShaderLibrary',['../class_kiwi_1_1_shader_program.html#a9046ee6724d804b2dfb38e03fb844a49',1,'Kiwi::ShaderProgram']]],
   ['gettype',['getType',['../class_kiwi_1_1_component.html#a522ed54dc4a50efad0040d31a8ee5795',1,'Kiwi::Component']]],
+  ['getviewmatrix',['GetViewMatrix',['../class_kiwi_1_1_transform.html#a9c55dba21dfd62950894de679e7c82b2',1,'Kiwi::Transform']]],
   ['glfwerrorcallback',['glfwErrorCallback',['../class_kiwi_1_1_service_locator.html#a1387a68cdb6925cb8d4725300c5433b1',1,'Kiwi::ServiceLocator']]],
-  ['glm_5fenable_5fexperimental',['GLM_ENABLE_EXPERIMENTAL',['../_transform_8h.html#abd75661fe7969e19439052a5f69ba5d1',1,'Transform.h']]],
+  ['glm_5fenable_5fexperimental',['GLM_ENABLE_EXPERIMENTAL',['../_camera_8cpp.html#abd75661fe7969e19439052a5f69ba5d1',1,'GLM_ENABLE_EXPERIMENTAL():&#160;Camera.cpp'],['../_transform_8h.html#abd75661fe7969e19439052a5f69ba5d1',1,'GLM_ENABLE_EXPERIMENTAL():&#160;Transform.h'],['../util_8h.html#abd75661fe7969e19439052a5f69ba5d1',1,'GLM_ENABLE_EXPERIMENTAL():&#160;util.h']]],
   ['glslvarinfo',['glslVarInfo',['../struct_kiwi_1_1glsl_var_info.html',1,'Kiwi']]]
 ];

@@ -53,6 +53,7 @@
               Reference
               <ul>
                 <li><a href="#base-classes">Base classes</a></li>
+                <li><a href="#pub-static-attribs">Public static variables</a></li>
                 <li><a href="#pub-methods">Public functions</a></li>
               </ul>
             </li>
@@ -68,9 +69,46 @@
             <dd></dd>
           </dl>
         </section>
+        <section id="pub-static-attribs">
+          <h2><a href="#pub-static-attribs">Public static variables</a></h2>
+          <dl class="m-dox">
+            <dt>static <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> <a href="#a071144d47c48acb2dc82581705307683" class="m-dox">worldUp</a></dt>
+            <dd></dd>
+            <dt>static <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> <a href="#a346682396af541d8569aa1766f418bd2" class="m-dox">worldRight</a></dt>
+            <dd></dd>
+            <dt>static <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> <a href="#a0058829178a814fdc7012fc398c35c9a" class="m-dox">worldForward</a></dt>
+            <dd></dd>
+          </dl>
+        </section>
         <section id="pub-methods">
           <h2><a href="#pub-methods">Public functions</a></h2>
           <dl class="m-dox">
+            <dt>
+              <span class="m-dox-wrap-bumper">auto <a href="#acb390913d295d3de83557e35d410df6e" class="m-dox">TransformDirection</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> direction) const -&gt; <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">auto <a href="#a5dd69c1160dc1a4cc13dd4d7b177e178" class="m-dox">TransformPoint</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> point) const -&gt; <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">auto <a href="#a9478ce39519aaab769ce983700687784" class="m-dox">InverseTransformDirection</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> direction) const -&gt; <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">auto <a href="#af10f8973b0e39d31ff035bd709e9c287" class="m-dox">InverseTransformPoint</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> point) const -&gt; <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a></span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">void <a href="#a731207ebe994df52ebed1170c186e403" class="m-dox">LookAt</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> target,
+              <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> worldUp = <a href="class_kiwi_1_1_transform.html#a071144d47c48acb2dc82581705307683" class="m-dox">Transform::<wbr />worldUp</a>)</span>
+            </dt>
+            <dd></dd>
+            <dt>
+              <span class="m-dox-wrap-bumper">void <a href="#a149eff66df75f01c4b4961479c3b63fc" class="m-dox">LookAt</a>(</span><span class="m-dox-wrap"><a href="class_kiwi_1_1_transform.html" class="m-dox">Transform</a> target,
+              <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> worldUp = <a href="class_kiwi_1_1_transform.html#a071144d47c48acb2dc82581705307683" class="m-dox">Transform::<wbr />worldUp</a>)</span>
+            </dt>
+            <dd></dd>
             <dt>
               <span class="m-dox-wrap-bumper">auto <a href="#a417270f1064fd194ac9279ff8283d2d3" class="m-dox">clone</a>(</span><span class="m-dox-wrap">) override -&gt; <a href="class_kiwi_1_1_component.html" class="m-dox">Component</a>* <span class="m-label m-flat m-warning">virtual</span></span>
             </dt>
@@ -79,11 +117,168 @@
         </section>
         <section>
           <h2>Function documentation</h2>
+          <section class="m-dox-details" id="acb390913d295d3de83557e35d410df6e"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> Kiwi::<wbr />Transform::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#acb390913d295d3de83557e35d410df6e" class="m-dox-self">TransformDirection</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> direction) const</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">direction</td>
+                  <td>Vector3 direction to transform</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>transformed direction</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Transforms the vector direction from local space to world space.</p><p>The transformation operation does not use the position or scale of this <a href="class_kiwi_1_1_transform.html" class="m-dox">Transform</a>.</p>
+          </div></section>
+          <section class="m-dox-details" id="a5dd69c1160dc1a4cc13dd4d7b177e178"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> Kiwi::<wbr />Transform::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#a5dd69c1160dc1a4cc13dd4d7b177e178" class="m-dox-self">TransformPoint</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> point) const</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">point</td>
+                  <td>Vector3 point to transform</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>transformed point</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Transforms the vector point from local space to world space.</p><p>The scale and translation of this transform affects the transformation operation.</p>
+          </div></section>
+          <section class="m-dox-details" id="a9478ce39519aaab769ce983700687784"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> Kiwi::<wbr />Transform::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#a9478ce39519aaab769ce983700687784" class="m-dox-self">InverseTransformDirection</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> direction) const</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">direction</td>
+                  <td>Vector3 direction to tranasform</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>transformed direction</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Transforms the vector direction from world space to local space.</p><p>The transformation operation does not use the position or scale of this <a href="class_kiwi_1_1_transform.html" class="m-dox">Transform</a>.</p>
+          </div></section>
+          <section class="m-dox-details" id="af10f8973b0e39d31ff035bd709e9c287"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> Kiwi::<wbr />Transform::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#af10f8973b0e39d31ff035bd709e9c287" class="m-dox-self">InverseTransformPoint</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> point) const</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">point</td>
+                  <td>Vector3 point to transform</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Returns</th>
+                  <td>transformed point</td>
+                </tr>
+              </tfoot>
+            </table>
+<p>Transforms the vector point from world space to local space.</p><p>The scale and translation of this transform affects the transformation operation.</p>
+          </div></section>
+          <section class="m-dox-details" id="a731207ebe994df52ebed1170c186e403"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper">void Kiwi::<wbr />Transform::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#a731207ebe994df52ebed1170c186e403" class="m-dox-self">LookAt</a>(</span><span class="m-dox-wrap"><a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> target,
+              <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> worldUp = <a href="class_kiwi_1_1_transform.html#a071144d47c48acb2dc82581705307683" class="m-dox">Transform::<wbr />worldUp</a>)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">target</td>
+                  <td>position to look at</td>
+                </tr>
+                <tr>
+                  <td>worldUp</td>
+                  <td>vector specifying upward direction</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Rotates the transform so that this forward vector points at <code>target</code>.</p><p>Then rotates the transform so that its up vector points at the vector specified by <code>worldUp</code>.</p>
+          </div></section>
+          <section class="m-dox-details" id="a149eff66df75f01c4b4961479c3b63fc"><div>
+            <h3>
+              <span class="m-dox-wrap-bumper">void Kiwi::<wbr />Transform::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#a149eff66df75f01c4b4961479c3b63fc" class="m-dox-self">LookAt</a>(</span><span class="m-dox-wrap"><a href="class_kiwi_1_1_transform.html" class="m-dox">Transform</a> target,
+              <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> worldUp = <a href="class_kiwi_1_1_transform.html#a071144d47c48acb2dc82581705307683" class="m-dox">Transform::<wbr />worldUp</a>)</span></span>
+            </h3>
+            <table class="m-table m-fullwidth m-flat">
+              <thead>
+                <tr><th colspan="2">Parameters</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 1%">target</td>
+                  <td>transform to look at</td>
+                </tr>
+                <tr>
+                  <td>worldUp</td>
+                  <td>vector specifying upward direction</td>
+                </tr>
+              </tbody>
+            </table>
+<p>Rotates the transform so that this forward vector points at the location <code>target</code>.</p><p>Then rotates the transform so that its up vector points at the vector specified by <code>worldUp</code>.</p>
+          </div></section>
           <section class="m-dox-details" id="a417270f1064fd194ac9279ff8283d2d3"><div>
             <h3>
               <span class="m-dox-wrap-bumper"><a href="class_kiwi_1_1_component.html" class="m-dox">Component</a>* Kiwi::<wbr />Transform::<wbr /></span><span class="m-dox-wrap"><span class="m-dox-wrap-bumper"><a href="#a417270f1064fd194ac9279ff8283d2d3" class="m-dox-self">clone</a>(</span><span class="m-dox-wrap">) override <span class="m-label m-warning">virtual</span></span></span>
             </h3>
 <p>Clones the position, rotation, scale, and transformation matrix of this component.</p>
+          </div></section>
+        </section>
+        <section>
+          <h2>Variable documentation</h2>
+          <section class="m-dox-details" id="a071144d47c48acb2dc82581705307683"><div>
+            <h3>
+              static <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> Kiwi::<wbr />Transform::<wbr /><a href="#a071144d47c48acb2dc82581705307683" class="m-dox-self">worldUp</a>
+            </h3>
+<p>Shorthand for Vector3(0, 1, 0)</p>
+          </div></section>
+          <section class="m-dox-details" id="a346682396af541d8569aa1766f418bd2"><div>
+            <h3>
+              static <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> Kiwi::<wbr />Transform::<wbr /><a href="#a346682396af541d8569aa1766f418bd2" class="m-dox-self">worldRight</a>
+            </h3>
+<p>Shorthand for Vector3(1, 0, 0)</p>
+          </div></section>
+          <section class="m-dox-details" id="a0058829178a814fdc7012fc398c35c9a"><div>
+            <h3>
+              static <a href="util_8h.html#a459c9b77a6258c5d6b9aa137b394aed0" class="m-dox">Vector3</a> Kiwi::<wbr />Transform::<wbr /><a href="#a0058829178a814fdc7012fc398c35c9a" class="m-dox-self">worldForward</a>
+            </h3>
+<p>Shorthand for Vector3(0, 0, 1)</p>
           </div></section>
         </section>
       </div>

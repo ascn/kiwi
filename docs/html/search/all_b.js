@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['parent',['parent',['../class_kiwi_1_1_game_object.html#a17ddcb1420074a7c8d1d7faa7901455d',1,'Kiwi::GameObject']]],
-  ['perspective',['Perspective',['../class_kiwi_1_1_camera.html#af2608eec5fc9a27768aa4e9f1867ccf0aa80420eef88d11f77532f1b9cb467fa3',1,'Kiwi::Camera']]],
-  ['position',['position',['../struct_kiwi_1_1_mesh_1_1_vertex.html#ac6aa04198621f5623bad8cdd490a0849',1,'Kiwi::Mesh::Vertex']]],
-  ['preparetodraw',['prepareToDraw',['../class_kiwi_1_1_mesh.html#ac4c8288f67f4db1395b9a50910ffb493',1,'Kiwi::Mesh']]],
-  ['projection',['projection',['../class_kiwi_1_1_camera.html#af24a803581dc100bfc999e6c3634193f',1,'Kiwi::Camera::projection()'],['../class_kiwi_1_1_camera.html#af2608eec5fc9a27768aa4e9f1867ccf0',1,'Kiwi::Camera::Projection()']]],
-  ['put',['put',['../class_kiwi_1_1_type_map.html#a4f9aa1d86988d91e7480e28e35cb0387',1,'Kiwi::TypeMap::put(const std::type_index &amp;key, const String &amp;value)'],['../class_kiwi_1_1_type_map.html#a1a91d5d81f3fb82e3216e9eeb3457c9e',1,'Kiwi::TypeMap::put(const String &amp;key, const std::type_index &amp;value)']]]
+  ['object',['Object',['../class_kiwi_1_1_object.html',1,'Kiwi::Object'],['../class_kiwi_1_1_object.html#a97ddf85ad3cc4134f2fb4f5e084b8421',1,'Kiwi::Object::Object()'],['../class_kiwi_1_1_object.html#a6e6be816a4facd513d31ea04f276dab7',1,'Kiwi::Object::Object(const String &amp;name)']]],
+  ['object_2ecpp',['Object.cpp',['../_object_8cpp.html',1,'']]],
+  ['object_2eh',['Object.h',['../_object_8h.html',1,'']]],
+  ['operator_3c_3c',['operator&lt;&lt;',['../class_kiwi_1_1_object.html#ae18246100173c7798abeac960fa2c439',1,'Kiwi::Object::operator&lt;&lt;()'],['../namespace_kiwi.html#a92cf3f65da7c96fc4f9e120ea9a85e08',1,'Kiwi::operator&lt;&lt;()']]],
+  ['operator_3d',['operator=',['../class_kiwi_1_1_game_object.html#a33a8df569ee49187227960f6de881ade',1,'Kiwi::GameObject::operator=()'],['../class_kiwi_1_1_shader_program.html#ae86a7e766a35a3b42b1f6125fdce7864',1,'Kiwi::ShaderProgram::operator=()']]],
+  ['orthographic',['Orthographic',['../class_kiwi_1_1_camera.html#af2608eec5fc9a27768aa4e9f1867ccf0a03424250432f2aa71de95579d2c0eaeb',1,'Kiwi::Camera']]]
 ];

@@ -13,6 +13,7 @@ var namespace_kiwi =
     [ "MeshRenderer", "class_kiwi_1_1_mesh_renderer.html", "class_kiwi_1_1_mesh_renderer" ],
     [ "Object", "class_kiwi_1_1_object.html", "class_kiwi_1_1_object" ],
     [ "Renderer", "class_kiwi_1_1_renderer.html", "class_kiwi_1_1_renderer" ],
+    [ "Scene", "class_kiwi_1_1_scene.html", null ],
     [ "ServiceLocator", "class_kiwi_1_1_service_locator.html", "class_kiwi_1_1_service_locator" ],
     [ "ShaderProgram", "class_kiwi_1_1_shader_program.html", "class_kiwi_1_1_shader_program" ],
     [ "Transform", "class_kiwi_1_1_transform.html", "class_kiwi_1_1_transform" ],

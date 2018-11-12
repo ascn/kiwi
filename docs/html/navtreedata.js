@@ -59,7 +59,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_camera_8h.html"
+"_camera_8cpp.html",
+"struct_kiwi_1_1_component_registrar.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
