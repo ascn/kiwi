@@ -30,7 +30,9 @@ void MeshRenderer::render() {
 
 	material->shader.useProgram();
 	glBindVertexArray(meshFilter->mesh->VAO);
-	glDrawElements(GL_TRIANGLES, meshFilter->mesh->indices.size(), GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES,
+				   static_cast<GLsizei>(meshFilter->mesh->indices.size()),
+				   GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }
 

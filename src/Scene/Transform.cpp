@@ -10,13 +10,14 @@ Vector3 Transform::worldForward(0.f, 0.f, 1.f);
 Transform::Transform() :
 	position(0.0, 0.0, 0.0),
 	scale(1.0, 1.0, 1.0),
+	rotation(),
 	eulerAngles(0.0, 0.0, 0.0),
 	transMat(),
 	up(worldUp),
 	right(worldRight),
 	forward(worldForward)
 {
-	updateRotation();
+	updateRotationMatrix();
 	update();
 }
 
@@ -31,13 +32,17 @@ void Transform::SetPosition(Vector3 position) {
 
 void Transform::SetRotation(Vector3 rotation) {
 	this->eulerAngles = rotation;
-	updateRotation();
+	updateRotationMatrix();
 	update();
 }
 
 void Transform::SetScale(Vector3 scale) {
 	this->scale = scale;
 	update();
+}
+
+Matrix4 Transform::GetViewMatrix() const {
+	return transMat;
 }
 
 Vector3 Transform::TransformDirection(Vector3 direction) const {
@@ -62,7 +67,7 @@ void Transform::LookAt(Vector3 target, Vector3 worldUp) {
 	forward = glm::normalize(target - position);
 	right = glm::abs(forward[1]) == 1 ? worldRight : glm::cross(worldUp, forward);
 	up = glm::cross(forward, right);
-	
+	update();
 }
 
 void Transform::LookAt(Transform target, Vector3 worldUp) {
@@ -70,22 +75,27 @@ void Transform::LookAt(Transform target, Vector3 worldUp) {
 }
 
 void Transform::update() {
-	transMat = glm::translate(position) *
-			   rotateMat *
-			   glm::scale(scale);
+	transMat = glm::lookAt(position, position + forward, up);
 }
 
-void Transform::updateRotation() {
-	rotateMat = glm::rotate(glm::radians(eulerAngles.x), Transform::right) *
-				glm::rotate(glm::radians(eulerAngles.y), Transform::up) *
-				glm::rotate(glm::radians(eulerAngles.z), Transform::forward);
-	up = rotateMat * Vector4(worldUp, 0);
-	right = rotateMat * Vector4(worldRight, 0);
-	forward = rotateMat * Vector4(worldForward, 0);
+void Transform::updateRotationMatrix() {
+	rotateMat = glm::toMat4(rotation);
+}
+
+void Transform::updateEulerFromQuat() {
+	eulerAngles = glm::eulerAngles(rotation);
+}
+
+void Transform::updateQuatFromEuler() {
+	rotation = Quaternion(eulerAngles);
 }
 
 void Transform::Rotate(Vector3 eulerAngles) {
 	
+}
+
+void Transform::RotateAround(Vector3 point, Vector3 axis, float angle) {
+
 }
 
 void Transform::Translate(Vector3 translation) {

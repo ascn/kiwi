@@ -30,6 +30,7 @@ struct glslVarInfo {
 
 // A map containing names of uniform variables to their info
 using UniformMap = std::unordered_map<String, glslVarInfo>;
+using AttribMap = std::unordered_map<String, glslVarInfo>;
 
 /**
  * Encapsulates data about an OpenGL program.
@@ -121,8 +122,79 @@ public:
 	 */
 	void useProgram();
 
-	template <typename T>
-	void setUniform(String name, T val);
+	/**
+	 * @name setUniform
+	 * Sets the value of the uniform specified by the name.
+	 * 
+	 * If the uniform variable does not exist, the program is
+	 * not modified. If the value passed in does not the type
+	 * of the uniform variable, the program is not modified.
+	 *
+	 */
+	/**@{*/
+	/**
+	 * Overload for setUniform for float uniforms
+	 * @param name the name of the uniform to set
+	 * @param val  the value to set
+	 */
+	void setUniform(String name, float val);
+
+	/**
+	 * Overload for setUniform for vec2 uniforms
+	 * @param name the name of the uniform to set
+	 * @param val  the value to set
+	 */
+	void setUniform(String name, Vector2 val);
+
+	/**
+	 * Overload for setUniform for vec3 uniforms
+	 * @param name the name of the uniform to set
+	 * @param val  the value to set
+	 */
+	void setUniform(String name, Vector3 val);
+
+	/**
+	 * Overload for setUniform for vec4 uniforms
+	 * @param name the name of the uniform to set
+	 * @param val  the value to set
+	 */
+	void setUniform(String name, Vector4 val);
+
+	/**
+	 * Overload for setUniform for int uniforms
+	 * @param name the name of the uniform to set
+	 * @param val  the value to set
+	 */
+	void setUniform(String name, int val);
+
+	/**
+	 * Overload for setUniform for ivec2 uniforms
+	 * @param name the name of the uniform to set
+	 * @param val  the value to set
+	 */
+	void setUniform(String name, IVector2 val);
+
+	/**
+	 * Overload for setUniform for ivec3 uniforms
+	 * @param name the name of the uniform to set
+	 * @param val  the value to set
+	 */
+	void setUniform(String name, IVector3 val);
+
+	/**
+	 * Overload for setUniform for ivec4 uniforms
+	 * @param name the name of the uniform to set
+	 * @param val  the value to set
+	 */
+	void setUniform(String name, IVector4 val);
+
+	/**
+	 * Overload for setUniform for mat4 uniforms
+	 * @param name the name of the uniform to set
+	 * @param val  the value to set
+	 */
+	void setUniform(String name, Matrix4 val);
+	/**@}*/
 
 	GLuint getAttribLocation(const String &name);
 
@@ -184,6 +256,9 @@ private:
 	GLuint programHandle;
 
 	UniformMap uniforms;
+	AttribMap attribs;
+
+	void setUniformHelper(String name, GLenum type, glslVarInfo *unifInfo);
 };
 
 }

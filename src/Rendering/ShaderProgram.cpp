@@ -188,27 +188,139 @@ void ShaderProgram::linkProgram() {
 
 	// Get uniforms and attributes
 	GLint count;
-	GLint location;
-	GLenum type;
 
-	const GLsizei bufSize = 16;
-	GLchar name[bufSize];
-	GLsizei length;
-
-	// Map uniforms to their location and type
-	glGetProgramiv(programHandle, GL_ACTIVE_UNIFORMS, &count);
+	glGetProgramInterfaceiv(programHandle, GL_UNIFORM, GL_ACTIVE_RESOURCES, &count);
+	const GLenum unifProperties[4] = { GL_BLOCK_INDEX, GL_TYPE, GL_NAME_LENGTH, GL_LOCATION };
 	for (int i = 0; i < count; ++i) {
-		glGetActiveUniform(programHandle, static_cast<GLuint>(i), bufSize, &length, NULL, &type, name);
-		location = glGetUniformLocation(programHandle, name);
-
-		uniforms.emplace(String(name), glslVarInfo{ location, type });
+		GLint values[4];
+		glGetProgramResourceiv(programHandle, GL_UNIFORM, i, 4, unifProperties, 4, NULL, values);
+		if (values[0] != -1) { continue; }
+		std::vector<char> nameData(values[2]);
+		glGetProgramResourceName(programHandle, GL_UNIFORM, i,
+								 static_cast<GLsizei>(nameData.size()),
+								 NULL, &nameData[0]);
+		uniforms.emplace(String(nameData.begin(), nameData.end() - 1),
+						 glslVarInfo{ values[3], static_cast<GLenum>(values[1]) });
 	}
 
-	glGetProgramiv(programHandle, GL_ACTIVE_ATTRIBUTES, &count);
+	glGetProgramInterfaceiv(programHandle, GL_PROGRAM_INPUT, GL_ACTIVE_RESOURCES, &count);
+	const GLenum attribProperties[] = { GL_TYPE, GL_NAME_LENGTH, GL_LOCATION };
 	for (int i = 0; i < count; ++i) {
-		//glGetActiveAttrib(programHandle, static_cast<GLuint>(i), bufSize, &length, NULL, &type, name);
-		//location = glGetAttribLocation(programHandle, name);
+		GLint values[3];
+		glGetProgramResourceiv(programHandle, GL_PROGRAM_INPUT, i, 3, attribProperties, 3, NULL, values);
+		std::vector<char> nameData(values[1]);
+		glGetProgramResourceName(programHandle, GL_PROGRAM_INPUT, i,
+								 static_cast<GLsizei>(nameData.size()),
+								 NULL, &nameData[0]);
+		attribs.emplace(String(nameData.begin(), nameData.end() - 1),
+						 glslVarInfo { values[2], static_cast<GLenum>(values[0]) });
 	}
+}
+
+void ShaderProgram::setUniformHelper(String name, GLenum type, glslVarInfo *unifInfo) {
+	try {
+		*unifInfo = uniforms.at(name);
+	} catch (std::exception &) {
+		ServiceLocator::getLogger(LOG_RENDERING).Log(
+			"invalid uniform name in setUniform", LOG_LEVEL::err);
+		throw std::runtime_error("invalid uniform name in setUniform");
+	}
+	if (unifInfo->type != type) {
+		ServiceLocator::getLogger(LOG_RENDERING).Log(
+			"cannot set uniform " + name + " due to incorrect type", LOG_LEVEL::err);
+		throw std::runtime_error("cannot set uniform " + name + " due to incorrect type");
+	}
+	return;
+}
+
+void ShaderProgram::setUniform(String name, float val) {
+	glslVarInfo unifInfo;
+	try {
+		setUniformHelper(name, GL_FLOAT, &unifInfo);
+	} catch (std::exception &) {
+		return;
+	}
+	glProgramUniform1f(programHandle, unifInfo.location, val);
+}
+
+void ShaderProgram::setUniform(String name, Vector2 val) {
+	glslVarInfo unifInfo;
+	try {
+		setUniformHelper(name, GL_FLOAT_VEC2, &unifInfo);
+	} catch (std::exception &) {
+		return;
+	}
+	glProgramUniform2f(programHandle, unifInfo.location, val[0], val[1]);
+}
+
+void ShaderProgram::setUniform(String name, Vector3 val) {
+	glslVarInfo unifInfo;
+	try {
+		setUniformHelper(name, GL_FLOAT_VEC3, &unifInfo);
+	} catch (std::exception &) {
+		return;
+	}
+	glProgramUniform3f(programHandle, unifInfo.location, val[0], val[1], val[2]);
+}
+
+void ShaderProgram::setUniform(String name, Vector4 val) {
+	glslVarInfo unifInfo;
+	try {
+		setUniformHelper(name, GL_FLOAT_VEC4, &unifInfo);
+	} catch (std::exception &) {
+		return;
+	}
+	glProgramUniform4f(programHandle, unifInfo.location, val[0], val[1], val[2], val[3]);
+}
+
+void ShaderProgram::setUniform(String name, int val) {
+	glslVarInfo unifInfo;
+	try {
+		setUniformHelper(name, GL_INT, &unifInfo);
+	} catch (std::exception &) {
+		return;
+	}
+	glProgramUniform1i(programHandle, unifInfo.location, val);
+}
+
+void ShaderProgram::setUniform(String name, IVector2 val) {
+	glslVarInfo unifInfo;
+	try {
+		setUniformHelper(name, GL_INT_VEC2, &unifInfo);
+	} catch (std::exception &) {
+		return;
+	}
+	glProgramUniform2i(programHandle, unifInfo.location, val[0], val[1]);
+}
+
+void ShaderProgram::setUniform(String name, IVector3 val) {
+	glslVarInfo unifInfo;
+	try {
+		setUniformHelper(name, GL_INT_VEC3, &unifInfo);
+	} catch (std::exception &) {
+		return;
+	}
+	glProgramUniform3i(programHandle, unifInfo.location, val[0], val[1], val[2]);
+}
+
+void ShaderProgram::setUniform(String name, IVector4 val) {
+	glslVarInfo unifInfo;
+	try {
+		setUniformHelper(name, GL_INT_VEC4, &unifInfo);
+	} catch (std::exception &) {
+		return;
+	}
+	glProgramUniform4i(programHandle, unifInfo.location, val[0], val[1], val[2], val[3]);
+}
+
+void ShaderProgram::setUniform(String name, Matrix4 val) {
+	glslVarInfo unifInfo;
+	try {
+		setUniformHelper(name, GL_FLOAT_MAT4, &unifInfo);
+	} catch (std::exception &) {
+		return;
+	}
+	glProgramUniformMatrix4fv(programHandle, unifInfo.location, 1, GL_FALSE, &val[0][0]);
 }
 
 void ShaderProgram::useProgram() {
@@ -216,29 +328,6 @@ void ShaderProgram::useProgram() {
 		throw std::runtime_error("program not linked");
 	}
 	glUseProgram(programHandle);
-}
-
-template <typename T>
-void ShaderProgram::setUniform(String name, T val) {
-	glslVarInfo unifInfo;
-	try {
-		unifInfo = uniforms.at(name);
-	} catch (std::exception &) {
-		ServiceLocator::getLogger(LOG_RENDERING).Log(
-			"invalid uniform name in setUniform", LOG_LEVEL::err);
-		return;
-	}
-	switch (unifInfo.type) {
-	case GL_FLOAT:
-		if (std::is_same<T, float>::value) {
-			glProgramUniform1f(programHandle, unifInfo.location, val);
-		}
-		return;
-	case GL_FLOAT_VEC2:
-		if (std::is_same<T, glm::vec2>::value) {
-			glProgramUniform2f(programHandle, unifInfo.location, val[0], val[1]);
-		}
-	}
 }
 
 GLuint ShaderProgram::getAttribLocation(const String &name) {

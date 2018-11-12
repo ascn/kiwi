@@ -9,6 +9,8 @@
 #include "Rendering/Mesh.h"
 #include "Rendering/Renderer.h"
 #include "Rendering/MeshRenderer.h"
+#include "Scene/Camera.h"
+#include "Scene/Transform.h"
 
 int mainInit() {
 	try {
@@ -21,7 +23,7 @@ int mainInit() {
 		Kiwi::ServiceLocator::initGLFW();
 		Kiwi::ServiceLocator::getMainWindow();
 		Kiwi::ServiceLocator::initGLEW();
-	} catch (std::exception &e) {
+	} catch (std::exception &) {
 		return 0;
 	}
 
@@ -41,23 +43,20 @@ void setUpTest() {
 		testShader->linkProgram();
 		Kiwi::Material *testMat = new Kiwi::Material(*testShader);
 
-		Kiwi::Mesh *mesh = new Kiwi::Mesh("tri");
-		Kiwi::Mesh::Vertex v1 = { {-1.f, -1.f, 0.f },
-								  { 1.f, 0.f, 0.f },
-								  { 0.f, 0.f} };
-		Kiwi::Mesh::Vertex v2 = { { 1.f, -1.f, 0.f },
-								  { 1.f, 0.f, 0.f },
-								  { 0.f, 0.f} };
-		Kiwi::Mesh::Vertex v3 = { { 0.f, 1.f, 0.f },
-								  { 1.f, 0.f, 0.f },
-								  { 0.f, 0.f} };
-		mesh->vertices = { v1, v2, v3 };
-		mesh->indices = { 0, 1, 2 };
-		mesh->prepareToDraw();
+		Kiwi::Mesh *wahooMesh = Kiwi::Mesh::LoadFromFile("../../res/wahoo.obj", "Wahoo");
+		wahooMesh->prepareToDraw();
 
-		Kiwi::GameObject *obj = new Kiwi::GameObject("Test Object");
-		obj->AddComponent<Kiwi::MeshFilter>()->mesh = mesh;
-		obj->AddComponent<Kiwi::MeshRenderer>()->material = testMat;
+		Kiwi::GameObject *triangle = new Kiwi::GameObject("Wahoo");
+		triangle->AddComponent<Kiwi::MeshFilter>()->mesh = wahooMesh;
+		triangle->AddComponent<Kiwi::MeshRenderer>()->material = testMat;
+
+		Kiwi::GameObject *cameraObject = new Kiwi::GameObject("Camera");
+		auto cameraComponent = cameraObject->AddComponent<Kiwi::Camera>();
+		cameraObject->GetComponent<Kiwi::Transform>()->Translate(Vector3(0, 0, 10));
+		cameraObject->GetComponent<Kiwi::Transform>()->LookAt(Vector3(0, 0, 0));
+		cameraComponent->computeViewMatrix();
+		cameraComponent->computeProjectionMatrix();
+		testShader->setUniform("MVP", cameraComponent->projectionMatrix() * cameraComponent->viewMatrix());
 	} catch (std::exception &) {
 		exit (1);
 	}

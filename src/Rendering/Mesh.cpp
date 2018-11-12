@@ -46,6 +46,10 @@ Mesh *Mesh::LoadFromFile(const String &filename, const String &name) {
 		// Load vertex positions
 		for (int j = 0; j < currMesh->mNumVertices; ++j) {
 			aiVector3D pos = currMesh->mVertices[j];
+			aiVector3D nor = currMesh->HasNormals() ? currMesh->mNormals[j] : aiVector3D(0, 0, 1);
+			m->vertices.push_back({ { pos.x, pos.y, pos.z },
+									{ nor.x, nor.y, nor.z },
+									{ 0, 0 } });
 			//m->vertices.push_back(Vector3(pos.x, pos.y, pos.z));
 		}
 
@@ -60,7 +64,7 @@ Mesh *Mesh::LoadFromFile(const String &filename, const String &name) {
 		// Load vertex uvs
 		if (currMesh->HasTextureCoords(0)) {
 			for (int j = 0; j < currMesh->mNumVertices; ++j) {
-				aiVector3D *uv = currMesh->mTextureCoords[j];
+				//aiVector3D *uv = currMesh->mTextureCoords[j];
 				// TODO: figure out how to get tex coords
 			}
 		}
