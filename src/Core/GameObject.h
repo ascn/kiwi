@@ -22,117 +22,98 @@ public:
 	GameObject &operator=(GameObject other);
 
 	// Vector of components
-	Vector<Component *> components;
+	Vector<std::unique_ptr<Component>> components;
 
 	GameObject *parent;
 
 	// Vector of children game objects (this is essentially a scene graph)
-	Vector<GameObject *> children;
+	Vector<std::unique_ptr<GameObject>> children;
 
-	/** @name AddComponent
-	 * Add a new component of the specified type to this game object and
-	 * return a pointer to the new component. It is recommended to use the
-	 * templatized function. Otherwise, the returned pointer should be
-	 * casted to the desired type.
-	 * If the type does not exist, or is not a Component, then this
-	 * GameObject is not modified and nullptr is returned.
-	 */
-	/**@{*/
 	/**
+	 * Add a new component of the specified type T to this game object and
+	 * return a reference to the new component. This function constructs
+	 * a new component of type T using the forward arguments args.
+	 *
+	 * The arguments args will be forwarded to the constructor as
+	 * <code>std::forward<Args>(args)...</code>.
+	 * 
+	 * If the type T is not a component, or is an abstract class,
+	 * then the code will fail to compile.
+	 *
 	 * @tparam T the type of Component to add
-	 * @return   pointer to the newly created Component
+	 * @tparam args arguments to a constructor of T
+	 * 
 	 */
-	template <class T>
-	T *AddComponent();
-	/**
-	 * @param type the name of the type of Component to add
-	 * @return     pointer to the newly created Component
-	 */
-	Component *AddComponent(const String &type);
-	/**@}*/
+	template <class T, typename... Args>
+	T &AddComponent(Args&&... args);
 
-	/** @name GetComponent
-	 * Returns the component of the specified type if the game object
-	 * has one attached, nullptr if it doesn't. It is recommended to use
-	 * the templatized function. Otherwise, the returned pointer should
-	 * be casted to the desired type.
-	 */
-	/**@{*/
 	/**
+	 * Returns the component of the specified type T if the game object
+	 * has one attached, nullptr if it doesn't.
+	 * 
 	 * @tparam T the type of Component to retrieve
 	 * @return   pointer to the Component if one exists, nullptr otherwise
 	 */
 	template <class T>
-	T *GetComponent();
-	/**
-	 * @param type the name of the type of Component to retrieve
-	 * @return     pointer to the Component if one exists, nullptr otherwise
-	 */
-	Component *GetComponent(const String &type);
-	/**@}*/
+	T *GetComponent() const;
 
-	/** @name GetComponentInChildren
-	 * Returns the component of the specified type in this game object or
+	/**
+	 * Returns the component of the specified type T in this game object or
 	 * any of its descendants in a depth first order if one is attached,
-	 * nullptr otherwise. It is recommended to use the templatized function.
-	 * Otherwise, the returned pointer should be casted to the desired
-	 * type.
-	 */
-	/**@{*/
-	/**
+	 * nullptr otherwise.
+	 * 
 	 * @tparam T the type of Component to retrieve
 	 * @return   pointer to the Component if one exists, nullptr otherwise
 	 */
 	template <class T>
-	T *GetComponentInChildren();
-	/**
-	 * @param type the name of the type of Component to retrieve
-	 * @return     pointer to the Component if one exists, nullptr otherwise
-	 */
-	Component *GetComponentInChildren(const String &type);
-	/**@}*/
+	T *GetComponentInChildren() const;
 
-	/** @name GetComponentInParent
-	 * Returns the component of the specified type in this game object or
+	/**
+	 * Returns the component of the specified type T in this game object or
 	 * any of its ancestors if one is attached, nullptr otherwise.
-	 */
-	/**@{*/
-	/**
+	 * 
 	 * @tparam T the type of Component to retrieve
 	 * @return   pointer to the Component if one exists, nullptr otherwise
 	 */
 	template <class T>
-	T *GetComponentInParent();
+	T *GetComponentInParent() const;
+
 	/**
-	 * @param type the name of the type of Component to retrieve
-	 * @return     pointer to the Component if one exists, nullptr otherwise
+	 * Finds all components of the specified type T in this game object.
+	 * These components are added to the vector components.
+	 *
+	 * @tparam T the type of Component to retrieve
+	 * @param components the vector to fill
 	 */
-	Component *GetComponentInParent(const String &type);
-	/**@}*/
-
-	/**@{*/
 	template <class T>
-	void GetComponents(Vector<T *> &components);
+	void GetComponents(Vector<T *> &components) const;
 
-	void GetComponents(const String &type, Vector<Component *> &components);
-	/**@}*/
-
-	/**@{*/
+	/**
+	 * Finds all components of the specified type T in this game object and
+	 * all of its descendants. These components are added to the vector
+	 * components.
+	 *
+	 * @tparam T the type of Component to retrieve
+	 * @param components the vector to fill
+	 */
 	template <class T>
-	void GetComponentsInChildren(Vector<T *> &components);
+	void GetComponentsInChildren(Vector<T *> &components) const;
 
-	void GetComponentsInChildren(const String &type,
-								 Vector<Component *> &components);
-	/**@}*/
-
-	/**@{*/
+	/**
+	 * Finds all components of the specified type T in this game object and
+	 * all of its ancestors. These components are added to the vector
+	 * components.
+	 *
+	 * @tparam T the type of Component to retrieve
+	 * @param components the vector to fill
+	 */
 	template <class T>
-	void GetComponentsInParent(Vector<T *> &components);
+	void GetComponentsInParent(Vector<T *> &components) const;
 
-	void GetComponentsInParent(const String &type,
-							   Vector<Component *> &components);
-	/**@}*/
-
+	/**
+	 * Set the parent of this game object.
+	 * @param parent pointer to the new parent GameObject
+	 */
 	void SetParent(GameObject *parent);
 
 	virtual GameObject *clone() const;
@@ -147,28 +128,25 @@ public:
 	}
 };
 
-template <class T>
-T *GameObject::AddComponent() {
-	T *ret = nullptr;
-	try {
-		Component *newComp = Component::getPrototypes().at(typeid(T))->clone();
-		GameObject::components.push_back(newComp);
-		newComp->gameObject = this;
-		ret = static_cast<T *>(newComp);
-	} catch (std::exception &e) {
-		ServiceLocator::getLogger().Log(e.what());
-	}
-	return ret;
+template <class T, typename... Args>
+T &GameObject::AddComponent(Args&&... args) {
+	static_assert(std::is_base_of_v<Component, T>, "can't add a non component type!");
+	auto ptr = std::make_unique<T>(std::forward<Args>(args)...);
+	ptr->gameObject = this;
+	auto ret = ptr.get();
+	GameObject::components.push_back(std::move(ptr));
+	return *ret;
 }
 
 template <class T>
-T *GameObject::GetComponent() {
+T *GameObject::GetComponent() const {
+	static_assert(std::is_base_of_v<Component, T>, "can't get a non component type!");
 	T *ret = nullptr;
 	try {
 		std::type_index idx = typeid(T);
 		for (auto &comp : components) {
 			if (comp->getType() == idx) {
-				ret = static_cast<T *>(comp);
+				ret = static_cast<T *>(comp.get());
 				break;
 			}
 		}
@@ -179,7 +157,8 @@ T *GameObject::GetComponent() {
 }
 
 template <class T>
-T *GameObject::GetComponentInChildren() {
+T *GameObject::GetComponentInChildren() const {
+	static_assert(std::is_base_of_v<Component, T>, "can't get a non component type!");
 	std::stack<GameObject *> stack;
 	stack.push(this);
 	Component *ret = nullptr;
@@ -190,36 +169,58 @@ T *GameObject::GetComponentInChildren() {
 			break;
 		}
 		for (auto &child : currObj->children) {
-			stack.push(child);
+			stack.push(child.get());
 		}
 	}
 	return static_cast<T *>(ret);
 }
 
 template <class T>
-T *GameObject::GetComponentInParent() {
-	Component *ret = nullptr;
+T *GameObject::GetComponentInParent() const {
+	static_assert(std::is_base_of_v<Component, T>, "can't get a non component type!");
+	T *ret = nullptr;
 	GameObject *currObj = this;
 	while (currObj != nullptr && ret == nullptr) {
 		ret = currObj->GetComponent<T>();
 		currObj = currObj->parent;
 	}
-	return static_cast<T>(ret);
+	return ret;
 }
 
 template <class T>
-void GameObject::GetComponents(Vector<T *> &components) {
-
+void GameObject::GetComponents(Vector<T *> &components) const {
+	static_assert(std::is_base_of_v<Component, T>, "can't get a non component type!");
+	std::type_index idx = typeid(T);
+	for (auto &comp : components) {
+		if (comp->getType() == idx) {
+			components.push_back(comp.get());
+		}
+	}
 }
 
 template <class T>
-void GameObject::GetComponentsInChildren(Vector<T *> &components) {
-
+void GameObject::GetComponentsInChildren(Vector<T *> &components) const {
+	static_assert(std::is_base_of_v<Component, T>, "can't get a non component type!");
+	std::stack<GameObject *> stack;
+	stack.push(this);
+	while (!stack.empty()) {
+		GameObject *currObj = stack.top();
+		stack.pop();
+		currObj->GetComponents<T>(components);
+		for (auto &child : currObj->children) {
+			stack.push(child.get());
+		}
+	}
 }
 
 template <class T>
-void GameObject::GetComponentsInParent(Vector<T *> &components) {
-
+void GameObject::GetComponentsInParent(Vector<T *> &components) const {
+	static_assert(std::is_base_of_v<Component, T>, "can't get a non component type!");
+	Gameobject *currObj = this;
+	while (currObj != nullptr) {
+		currObj->GetComponents<T>(components);
+		currObj = currObj->parent;
+	}
 }
 
 }

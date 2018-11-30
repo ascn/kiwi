@@ -1,7 +1,6 @@
 #include "Rendering/Mesh.h"
 #include "Core/ServiceLocator.h"
 #include "Logger.h"
-#include "Rendering/MeshLibrary.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -37,12 +36,12 @@ Mesh *Mesh::LoadFromFile(const String &filename, const String &name) {
 		return ret;
 	}
 
+	auto m = std::make_unique<Mesh>(name);
 	for (int i = 0; i < scene->mNumMeshes; ++i) {
 		aiMesh *currMesh = scene->mMeshes[i];
 		if (!(currMesh->HasPositions()) || !(currMesh->HasFaces())) { continue; }
-		Mesh *m = new Mesh(name);
-		isAllocated = true;
-		
+
+		int idxOffset = m->vertices.size();
 		// Load vertex positions
 		for (int j = 0; j < currMesh->mNumVertices; ++j) {
 			aiVector3D pos = currMesh->mVertices[j];
@@ -50,21 +49,11 @@ Mesh *Mesh::LoadFromFile(const String &filename, const String &name) {
 			m->vertices.push_back({ { pos.x, pos.y, pos.z },
 									{ nor.x, nor.y, nor.z },
 									{ 0, 0 } });
-			//m->vertices.push_back(Vector3(pos.x, pos.y, pos.z));
-		}
-
-		// Load vertex normals
-		if (currMesh->HasNormals()) {
-			for (int j = 0; j < currMesh->mNumVertices; ++j) {
-				aiVector3D nor = currMesh->mNormals[j];
-				//m->normals.push_back(Vector3(nor.x, nor.y, nor.z));
-			}
 		}
 
 		// Load vertex uvs
 		if (currMesh->HasTextureCoords(0)) {
 			for (int j = 0; j < currMesh->mNumVertices; ++j) {
-				//aiVector3D *uv = currMesh->mTextureCoords[j];
 				// TODO: figure out how to get tex coords
 			}
 		}
@@ -73,22 +62,16 @@ Mesh *Mesh::LoadFromFile(const String &filename, const String &name) {
 			aiFace face = currMesh->mFaces[j];
 			if (face.mNumIndices != 3) {
 				ServiceLocator::getLogger(LOG_RENDERING).Log("Face is not a triangle");
-				isError = true;
-				break;
+				return ret;
 			}
-			m->indices.push_back(face.mIndices[0]);
-			m->indices.push_back(face.mIndices[1]);
-			m->indices.push_back(face.mIndices[2]);
+			m->indices.push_back(idxOffset + face.mIndices[0]);
+			m->indices.push_back(idxOffset + face.mIndices[1]);
+			m->indices.push_back(idxOffset + face.mIndices[2]);
 		}
-
-		if (isError && isAllocated) {
-			delete m;
-		} else {
-			ServiceLocator::getMeshLibrary()->addMesh(name, m);
-			ret = m;
-		}
-		return ret;
 	}
+	ret = m.get();
+	ServiceLocator::getMeshLibrary()->addMesh(name, std::move(m));
+	return ret;
 }
 
 void Mesh::prepareToDraw() {
@@ -123,5 +106,19 @@ MeshFilter::MeshFilter() :
 
 MeshFilter::MeshFilter(Mesh *m) :
 	mesh(m) {}
+
+Mesh *MeshLibrary::getMesh(String name) {
+	Mesh *ret = nullptr;
+	try {
+		ret = meshLib.at(name).get();
+	} catch (std::exception &) {
+		ServiceLocator::getLogger().Log("Failed to retrieve mesh: " + name);
+	}
+	return ret;
+}
+
+void MeshLibrary::addMesh(String name, std::unique_ptr<Mesh> mesh) {
+	meshLib.emplace(name, std::move(mesh));
+}
 
 }

@@ -23,7 +23,6 @@ K_COMPONENT_H(MeshRenderer)
 
 	virtual Component *clone() override {
 		auto *ret = new MeshRenderer();
-		Renderer::getRendererList().push_back(ret);
 		return ret;
 	}
 };

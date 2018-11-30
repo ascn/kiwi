@@ -100,6 +100,6 @@ public: \
 	std::type_index getType() override { return type; }
 
 #define K_COMPONENT_S(Type) \
-std::type_index Type::type = ComponentRegistrar<Type>::registerComponent(#Type);
+std::type_index Type::type = typeid(Type);//ComponentRegistrar<Type>::registerComponent(#Type);
 
 #endif // __COMPONENT_H__

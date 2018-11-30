@@ -221,11 +221,19 @@ void ShaderProgram::setUniformHelper(String name, GLenum type, glslVarInfo *unif
 	try {
 		*unifInfo = uniforms.at(name);
 	} catch (std::exception &) {
+		String err = "invalid uniform name ";
+		err += name;
+		err += " in setUniform of shader ";
+		err += shaderName;
 		ServiceLocator::getLogger(LOG_RENDERING).Log(
 			"invalid uniform name in setUniform", LOG_LEVEL::err);
 		throw std::runtime_error("invalid uniform name in setUniform");
 	}
 	if (unifInfo->type != type) {
+		String err = "cannot set uniform ";
+		err += name;
+		err += " due to incorrect type in shader ";
+		err += shaderName;
 		ServiceLocator::getLogger(LOG_RENDERING).Log(
 			"cannot set uniform " + name + " due to incorrect type", LOG_LEVEL::err);
 		throw std::runtime_error("cannot set uniform " + name + " due to incorrect type");

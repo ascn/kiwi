@@ -12,10 +12,10 @@ Transform::Transform() :
 	scale(1.0, 1.0, 1.0),
 	rotation(),
 	eulerAngles(0.0, 0.0, 0.0),
-	transMat(),
-	up(worldUp),
-	right(worldRight),
-	forward(worldForward)
+	transMat(1.f),
+	up(Vector3(0.f, 1.f, 0.f)),
+	right(Vector3(1.f, 0.f, 0.f)),
+	forward(Vector3(0.f, 0.f, 1.f))
 {
 	updateRotationMatrix();
 	update();

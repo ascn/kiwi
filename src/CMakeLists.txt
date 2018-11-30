@@ -6,6 +6,9 @@ add_executable(
 	main
 	${KIWI_SRC})
 
+set_property(TARGET main
+			 PROPERTY CXX_STANDARD 17)
+
 FIND_PACKAGE(OpenGL REQUIRED)
 
 if (WIN32)

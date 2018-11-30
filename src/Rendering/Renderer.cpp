@@ -2,6 +2,8 @@
 
 namespace Kiwi {
 
-Renderer::Renderer() {}
+Renderer::Renderer() {
+	Renderer::getRendererList().push_back(this);
+}
 
 }

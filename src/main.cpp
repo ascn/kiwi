@@ -46,24 +46,27 @@ void setUpTest() {
 		Kiwi::Mesh *wahooMesh = Kiwi::Mesh::LoadFromFile("../../res/wahoo.obj", "Wahoo");
 		wahooMesh->prepareToDraw();
 
-		Kiwi::GameObject *triangle = new Kiwi::GameObject("Wahoo");
-		triangle->AddComponent<Kiwi::MeshFilter>()->mesh = wahooMesh;
-		triangle->AddComponent<Kiwi::MeshRenderer>()->material = testMat;
+		Kiwi::GameObject *wahooObject = new Kiwi::GameObject("Wahoo");
+		wahooObject->AddComponent<Kiwi::MeshFilter>(wahooMesh);
+		wahooObject->AddComponent<Kiwi::MeshRenderer>().material = testMat;
 
 		Kiwi::GameObject *cameraObject = new Kiwi::GameObject("Camera");
 		auto cameraComponent = cameraObject->AddComponent<Kiwi::Camera>();
-		cameraObject->GetComponent<Kiwi::Transform>()->Translate(Vector3(0, 0, 10));
+		cameraObject->GetComponent<Kiwi::Transform>()->Translate(Vector3(0, 2, -10));
 		cameraObject->GetComponent<Kiwi::Transform>()->LookAt(Vector3(0, 0, 0));
-		cameraComponent->computeViewMatrix();
-		cameraComponent->computeProjectionMatrix();
-		testShader->setUniform("MVP", cameraComponent->projectionMatrix() * cameraComponent->viewMatrix());
+		cameraComponent.computeViewMatrix();
+		cameraComponent.computeProjectionMatrix();
+		testShader->setUniform("u_model", wahooObject->GetComponent<Kiwi::Transform>()->GetViewMatrix());
+		testShader->setUniform("u_view", cameraComponent.viewMatrix());
+		testShader->setUniform("u_proj", cameraComponent.projectionMatrix());
+		testShader->setUniform("u_modelInvTr", glm::inverse(glm::transpose(wahooObject->GetComponent<Kiwi::Transform>()->GetViewMatrix())));
 	} catch (std::exception &) {
 		exit (1);
 	}
 }
 
 void renderTest() {
-	for (Kiwi::Renderer *r : Kiwi::Renderer::getRendererList()) {
+	for (auto &r : Kiwi::Renderer::getRendererList()) {
 		r->render();
 	}
 }
@@ -79,10 +82,11 @@ int main() {
 	Kiwi::ShaderProgram *shader =
 		Kiwi::ShaderProgram::getShaderLibrary().at("TestShader");
 
-	glDisable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
 
 	do {
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		renderTest();
 

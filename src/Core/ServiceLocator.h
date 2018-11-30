@@ -6,7 +6,7 @@
 
 #include "util.h"
 #include "Logger.h"
-#include "Rendering/MeshLibrary.h"
+#include "Rendering/Mesh.h"
 
 namespace Kiwi {
 

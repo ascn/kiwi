@@ -14,6 +14,7 @@ namespace Kiwi {
  * through scripts.
  */
 class Mesh : public Object {
+friend class MeshRenderer;
 public:
 	Mesh();
 	Mesh(String name);
@@ -57,6 +58,7 @@ public:
 	/** Name of the mesh */
 	String name;
 
+private:
 	GLuint VAO;
 	GLuint VBO;
 	GLuint EBO;
@@ -73,6 +75,31 @@ K_COMPONENT_H(MeshFilter)
 	}
 
 	Mesh *mesh;
+};
+
+class MeshLibrary {
+public:
+	/**
+	 * Returns a non-owning pointer to a mesh with the given
+	 * name \p name. If no such mesh exists, nullptr is returned.
+	 *
+	 * @param  name the name of the mesh to retrieve
+	 * @return      pointer to the meshif one exists, nullptr otherwise
+	 */
+	Mesh *getMesh(String name);
+
+	/**
+	 * Adds a mesh to the library. The library will take
+	 * ownership of the mesh, and the unique_ptr containing
+	 * the mesh will now be nullptr after this function.
+	 * 
+	 * @param name name of the mesh
+	 * @param mesh unique_ptr to the mesh
+	 */
+	void addMesh(String name, std::unique_ptr<Mesh> mesh);
+
+private:
+	std::unordered_map<String, std::unique_ptr<Mesh>> meshLib;
 };
 
 }
