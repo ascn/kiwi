@@ -27,6 +27,11 @@ MeshLibrary *ServiceLocator::getMeshLibrary() {
 	return &meshLib;
 }
 
+TextureLibrary *ServiceLocator::getTextureLibrary() {
+	static TextureLibrary texLib;
+	return &texLib;
+}
+
 void ServiceLocator::initGLFW() {
 	if (!glfwInit()) {
 		ServiceLocator::getLogger(LOG_RENDERING).Log("Failed to initialize GLFW", LOG_LEVEL::err);

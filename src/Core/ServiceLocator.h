@@ -7,6 +7,7 @@
 #include "util.h"
 #include "Logger.h"
 #include "Rendering/Mesh.h"
+#include "Rendering/Texture.h"
 
 namespace Kiwi {
 
@@ -20,6 +21,7 @@ public:
 	static Logger getLogger(const String &logger = LOG_DEFAULT);
 
 	static MeshLibrary *getMeshLibrary();
+	static TextureLibrary *getTextureLibrary();
 
 	static void initGLFW();
 	static void terminateGLFW();

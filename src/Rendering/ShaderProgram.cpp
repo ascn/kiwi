@@ -217,7 +217,21 @@ void ShaderProgram::linkProgram() {
 	}
 }
 
-void ShaderProgram::setUniformHelper(String name, GLenum type, glslVarInfo *unifInfo) {
+void ShaderProgram::loadAndLink(const String &vertPath,
+								const String &tessControlPath,
+								const String &tessEvalPath,
+								const String &geoPath,
+								const String &fragPath) {
+	if (vertPath != "") { loadShader(ShaderType::VERTEX_SHADER, vertPath); }
+	if (tessControlPath != "") { loadShader(ShaderType::TESS_CONTROL_SHADER, tessControlPath); }
+	if (tessEvalPath != "") { loadShader(ShaderType::TESS_EVALUATION_SHADER, tessEvalPath); }
+	if (geoPath != "") { loadShader(ShaderType::GEOMETRY_SHADER, geoPath); }
+	if (fragPath != "") { loadShader(ShaderType::FRAGMENT_SHADER, fragPath); }
+
+	linkProgram();
+}
+
+void ShaderProgram::setUniformHelper(String name, std::vector<GLenum> types, glslVarInfo *unifInfo) {
 	try {
 		*unifInfo = uniforms.at(name);
 	} catch (std::exception &) {
@@ -226,10 +240,17 @@ void ShaderProgram::setUniformHelper(String name, GLenum type, glslVarInfo *unif
 		err += " in setUniform of shader ";
 		err += shaderName;
 		ServiceLocator::getLogger(LOG_RENDERING).Log(
-			"invalid uniform name in setUniform", LOG_LEVEL::err);
-		throw std::runtime_error("invalid uniform name in setUniform");
+			err, LOG_LEVEL::err);
+		throw std::runtime_error(err);
 	}
-	if (unifInfo->type != type) {
+	bool anyMatch = false;
+	for (const auto &t : types) {
+		if (unifInfo->type == t) {
+			anyMatch = true;
+			break;
+		}
+	}
+	if (!anyMatch) {
 		String err = "cannot set uniform ";
 		err += name;
 		err += " due to incorrect type in shader ";
@@ -237,6 +258,7 @@ void ShaderProgram::setUniformHelper(String name, GLenum type, glslVarInfo *unif
 		ServiceLocator::getLogger(LOG_RENDERING).Log(
 			"cannot set uniform " + name + " due to incorrect type", LOG_LEVEL::err);
 		throw std::runtime_error("cannot set uniform " + name + " due to incorrect type");
+
 	}
 	return;
 }
@@ -244,7 +266,7 @@ void ShaderProgram::setUniformHelper(String name, GLenum type, glslVarInfo *unif
 void ShaderProgram::setUniform(String name, float val) {
 	glslVarInfo unifInfo;
 	try {
-		setUniformHelper(name, GL_FLOAT, &unifInfo);
+		setUniformHelper(name, { GL_FLOAT }, &unifInfo);
 	} catch (std::exception &) {
 		return;
 	}
@@ -254,7 +276,7 @@ void ShaderProgram::setUniform(String name, float val) {
 void ShaderProgram::setUniform(String name, Vector2 val) {
 	glslVarInfo unifInfo;
 	try {
-		setUniformHelper(name, GL_FLOAT_VEC2, &unifInfo);
+		setUniformHelper(name, { GL_FLOAT_VEC2 }, &unifInfo);
 	} catch (std::exception &) {
 		return;
 	}
@@ -264,7 +286,7 @@ void ShaderProgram::setUniform(String name, Vector2 val) {
 void ShaderProgram::setUniform(String name, Vector3 val) {
 	glslVarInfo unifInfo;
 	try {
-		setUniformHelper(name, GL_FLOAT_VEC3, &unifInfo);
+		setUniformHelper(name, { GL_FLOAT_VEC3 }, &unifInfo);
 	} catch (std::exception &) {
 		return;
 	}
@@ -274,7 +296,7 @@ void ShaderProgram::setUniform(String name, Vector3 val) {
 void ShaderProgram::setUniform(String name, Vector4 val) {
 	glslVarInfo unifInfo;
 	try {
-		setUniformHelper(name, GL_FLOAT_VEC4, &unifInfo);
+		setUniformHelper(name, { GL_FLOAT_VEC4 }, &unifInfo);
 	} catch (std::exception &) {
 		return;
 	}
@@ -284,7 +306,7 @@ void ShaderProgram::setUniform(String name, Vector4 val) {
 void ShaderProgram::setUniform(String name, int val) {
 	glslVarInfo unifInfo;
 	try {
-		setUniformHelper(name, GL_INT, &unifInfo);
+		setUniformHelper(name, { GL_INT, GL_SAMPLER_2D }, &unifInfo);
 	} catch (std::exception &) {
 		return;
 	}
@@ -294,7 +316,7 @@ void ShaderProgram::setUniform(String name, int val) {
 void ShaderProgram::setUniform(String name, IVector2 val) {
 	glslVarInfo unifInfo;
 	try {
-		setUniformHelper(name, GL_INT_VEC2, &unifInfo);
+		setUniformHelper(name, { GL_INT_VEC2 }, &unifInfo);
 	} catch (std::exception &) {
 		return;
 	}
@@ -304,7 +326,7 @@ void ShaderProgram::setUniform(String name, IVector2 val) {
 void ShaderProgram::setUniform(String name, IVector3 val) {
 	glslVarInfo unifInfo;
 	try {
-		setUniformHelper(name, GL_INT_VEC3, &unifInfo);
+		setUniformHelper(name, { GL_INT_VEC3 }, &unifInfo);
 	} catch (std::exception &) {
 		return;
 	}
@@ -314,7 +336,7 @@ void ShaderProgram::setUniform(String name, IVector3 val) {
 void ShaderProgram::setUniform(String name, IVector4 val) {
 	glslVarInfo unifInfo;
 	try {
-		setUniformHelper(name, GL_INT_VEC4, &unifInfo);
+		setUniformHelper(name, { GL_INT_VEC4 }, &unifInfo);
 	} catch (std::exception &) {
 		return;
 	}
@@ -324,7 +346,7 @@ void ShaderProgram::setUniform(String name, IVector4 val) {
 void ShaderProgram::setUniform(String name, Matrix4 val) {
 	glslVarInfo unifInfo;
 	try {
-		setUniformHelper(name, GL_FLOAT_MAT4, &unifInfo);
+		setUniformHelper(name, { GL_FLOAT_MAT4 }, &unifInfo);
 	} catch (std::exception &) {
 		return;
 	}

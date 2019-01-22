@@ -2,15 +2,21 @@
 #define __BEHAVIOR_H__
 
 #include "Core/Component.h"
+#include "Scene/Scene.h"
 
 namespace Kiwi {
 
 class Behavior;
-using BehaviorList = std::vector<BehaviorList *>;
+using BehaviorList = std::vector<Behavior *>;
 
 class Behavior : public Component {
 public:
-	Behavior();
+	Behavior() : enabled(true) {}
+	Behavior(Scene &s) : enabled(true), s(&s)
+	{
+		s.updateList.push_back(this);
+	}
+
 	virtual ~Behavior() {}
 	virtual void update() = 0;
 
@@ -22,7 +28,8 @@ public:
 	}
 
 	bool enabled;
-}
+	Scene *s;
+};
 
 }
 

@@ -7,8 +7,8 @@ namespace Kiwi {
 
 K_COMPONENT_S(MeshRenderer)
 
-MeshRenderer::MeshRenderer() :
-	Renderer()
+MeshRenderer::MeshRenderer(Scene &s) :
+	Renderer(s)
 {
 
 }

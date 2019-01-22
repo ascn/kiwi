@@ -114,6 +114,18 @@ public:
 	void linkProgram();
 
 	/**
+	 * Convenience method for loading and linking and entire shader
+	 * pipeline in one function call. If an argument is the empty string,
+	 * then it is assumed that the pipeline does not contain that stage
+	 * and this function does not attempt to load it.
+	 */
+	void loadAndLink(const String &vertPath,
+					 const String &tessControlPath,
+					 const String &tessEvalPath,
+					 const String &geoPath,
+					 const String &fragPath);
+
+	/**
 	 * Use this program in the current OpenGL rendering context.
 	 * If this program is not already linked, then an std::runtime_error
 	 * is thrown.
@@ -258,7 +270,7 @@ private:
 	UniformMap uniforms;
 	AttribMap attribs;
 
-	void setUniformHelper(String name, GLenum type, glslVarInfo *unifInfo);
+	void setUniformHelper(String name, std::vector<GLenum> types, glslVarInfo *unifInfo);
 };
 
 }

@@ -2,33 +2,54 @@ file(GLOB_RECURSE KIWI_SRC
 	"*.h"
 	"*.cpp")
 
-add_executable(
-	main
-	${KIWI_SRC})
+set (SHADOW_DEMO_DIR "/ShadowDemo/")
+message(${KIWI_SRC})
+foreach (TMP_PATH ${KIWI_SRC})
+    string (FIND ${TMP_PATH} ${SHADOW_DEMO_DIR} EXCLUDE_DIR_FOUND)
+    if (NOT ${EXCLUDE_DIR_FOUND} EQUAL -1)
+        list (REMOVE_ITEM KIWI_SRC ${TMP_PATH})
+    endif ()
+endforeach(TMP_PATH)
+message(${KIWI_SRC})
 
-set_property(TARGET main
+add_library(kiwi-lib STATIC ${KIWI_SRC})
+
+file(GLOB_RECURSE SHADOW_DEMO_SRC
+	"ShadowDemo/*.h"
+	"ShadowDemo/*.cpp")
+
+add_executable(
+	ShadowDemo
+	${SHADOW_DEMO_SRC})
+
+set_property(TARGET kiwi-lib
+			 PROPERTY CXX_STANDARD 17)
+
+set_property(TARGET ShadowDemo
 			 PROPERTY CXX_STANDARD 17)
 
 FIND_PACKAGE(OpenGL REQUIRED)
 
 if (WIN32)
-	target_link_libraries(main ${OPENGL_LIBRARIES} glew glfw assimp pthread-win)
+	target_link_libraries(kiwi-lib ${OPENGL_LIBRARIES} glew glfw assimp pthread-win)
 elseif (UNIX)
-	target_link_libraries(main assimp pthread glfw)
+	target_link_libraries(kiwi-lib assimp pthread glfw)
 endif (WIN32)
-add_dependencies(main assimp glm spdlog glew)
+add_dependencies(kiwi-lib assimp glm spdlog glew soil glfw)
 
+add_dependencies(ShadowDemo kiwi-lib)
+target_link_libraries(ShadowDemo kiwi-lib)
 
 if (WIN32)
-	add_custom_command(TARGET main POST_BUILD
+	add_custom_command(TARGET ShadowDemo POST_BUILD
 		COMMAND "${CMAKE_COMMAND}" -E copy_if_different
 		"${EXTERNAL}/assimp/src/assimp-dl-build/code/Debug/assimp${LIBRARY_SUFFIX}.dll"
-		$<TARGET_FILE_DIR:main>
+		$<TARGET_FILE_DIR:ShadowDemo>
 	)
 
-	add_custom_command(TARGET main POST_BUILD
+	add_custom_command(TARGET ShadowDemo POST_BUILD
 		COMMAND "${CMAKE_COMMAND}" -E copy_if_different
 		"${EXTERNAL}/glew/src/glew-dl/bin/Release/x64/glew32.dll"
-		$<TARGET_FILE_DIR:main>
+		$<TARGET_FILE_DIR:ShadowDemo>
 	)
 endif (WIN32)

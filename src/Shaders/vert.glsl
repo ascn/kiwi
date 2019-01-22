@@ -15,8 +15,8 @@ layout(location = 2) out vec2 fs_uv;
 
 void main() {
 	fs_uv = uv;
-	//fs_nor = vec3(normalize(vec4(u_modelInvTr * vec4(normal, 0.f))));
-	fs_nor = normal;
+	fs_nor = vec3(normalize(vec4(u_modelInvTr * vec4(normal, 0.f))));
+	//fs_nor = normal;
 
 	vec4 mPos = u_model * vec4(position, 1.f);
 	fs_pos = vec3(mPos);

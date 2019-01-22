@@ -18,7 +18,7 @@ Transform::Transform() :
 	forward(Vector3(0.f, 0.f, 1.f))
 {
 	updateRotationMatrix();
-	update();
+	updateLocal();
 }
 
 Vector3 Transform::GetPosition() const { return position; }
@@ -27,18 +27,18 @@ Vector3 Transform::GetScale() const { return scale; }
 
 void Transform::SetPosition(Vector3 position) {
 	this->position = position;
-	update();
+	updateLocal();
 }
 
 void Transform::SetRotation(Vector3 rotation) {
 	this->eulerAngles = rotation;
 	updateRotationMatrix();
-	update();
+	updateLocal();
 }
 
 void Transform::SetScale(Vector3 scale) {
 	this->scale = scale;
-	update();
+	updateLocal();
 }
 
 Matrix4 Transform::GetViewMatrix() const {
@@ -67,15 +67,16 @@ void Transform::LookAt(Vector3 target, Vector3 worldUp) {
 	forward = glm::normalize(target - position);
 	right = glm::abs(forward[1]) == 1 ? worldRight : glm::cross(worldUp, forward);
 	up = glm::cross(forward, right);
-	update();
+	updateLocal();
 }
 
 void Transform::LookAt(Transform target, Vector3 worldUp) {
 	LookAt(target.position, worldUp);
 }
 
-void Transform::update() {
-	transMat = glm::lookAt(position, position + forward, up);
+void Transform::updateLocal() {
+	rotateMat = glm::lookAt(position, position + forward, up);
+	transMat = glm::translate(position) * rotateMat * glm::scale(scale);
 }
 
 void Transform::updateRotationMatrix() {
@@ -100,7 +101,7 @@ void Transform::RotateAround(Vector3 point, Vector3 axis, float angle) {
 
 void Transform::Translate(Vector3 translation) {
 	position += translation;
-	update();
+	updateLocal();
 }
 
 }

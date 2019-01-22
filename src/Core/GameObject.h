@@ -126,6 +126,10 @@ public:
 		swap(first.components, second.components);
 		swap(first.parent, second.parent);
 	}
+
+private:
+	friend class Scene;
+	virtual void serialize(std::ostream &) {}
 };
 
 template <class T, typename... Args>

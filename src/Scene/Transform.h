@@ -133,7 +133,7 @@ K_COMPONENT_H(Transform)
 	static Vector3 worldForward;
 
 private:
-	void update();
+	void updateLocal();
 	void updateRotationMatrix();
 	void updateEulerFromQuat();
 	void updateQuatFromEuler();

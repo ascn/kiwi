@@ -28,6 +28,7 @@ include_directories("${EXTERNAL}/assimp/src/assimp-dl/include")
 include(glfw.cmake)
 include(pthread-win.cmake)
 include(glew.cmake)
+include(soil.cmake)
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 include_directories(${GlmIncludeDir})

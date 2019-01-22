@@ -3,6 +3,7 @@
 
 #include "Core/Component.h"
 #include "Rendering/Material.h"
+#include "Scene/Scene.h"
 
 namespace Kiwi {
 
@@ -21,6 +22,7 @@ using RendererList = std::vector<Renderer *>;
 class Renderer : public Component {
 public:
 	Renderer();
+	Renderer(Scene &s);
 	virtual ~Renderer() {}
 	virtual void render() = 0;
 
@@ -33,6 +35,7 @@ public:
 
 	bool enabled;
 	Material *material;
+	Scene *scene;
 };
 
 }

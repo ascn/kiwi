@@ -17,12 +17,13 @@ class MeshRenderer : public Renderer {
 public:
 K_COMPONENT_H(MeshRenderer)
 
-	MeshRenderer();
+	MeshRenderer() {}
+	MeshRenderer(Scene &s);
 	virtual ~MeshRenderer() override;
 	virtual void render() override;
 
 	virtual Component *clone() override {
-		auto *ret = new MeshRenderer();
+		auto *ret = new MeshRenderer(*Renderer::scene);
 		return ret;
 	}
 };
