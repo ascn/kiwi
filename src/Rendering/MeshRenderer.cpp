@@ -17,7 +17,7 @@ MeshRenderer::~MeshRenderer() {
 
 }
 
-void MeshRenderer::render() {
+void MeshRenderer::render(bool useMaterial) {
 	// Check for enabled and MeshFilter
 	MeshFilter *meshFilter;
 	if (!enabled ||
@@ -28,7 +28,7 @@ void MeshRenderer::render() {
 	// MeshFilter contains a reference to a mesh
 	// which contains an already setup VAO with VBOs
 
-	material->shader.useProgram();
+	if (useMaterial) { material->shader.useProgram(); }
 	glBindVertexArray(meshFilter->mesh->VAO);
 	glDrawElements(GL_TRIANGLES,
 				   static_cast<GLsizei>(meshFilter->mesh->indices.size()),

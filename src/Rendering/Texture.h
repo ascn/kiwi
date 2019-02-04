@@ -12,6 +12,7 @@ public:
 	Texture();
 	~Texture();
 
+	static Texture *CreateEmptyTexture(int width, int height);
 	static Texture *LoadFromFile(const String &filename);
 
 	void prepareToUse();
@@ -25,6 +26,7 @@ public:
 	};
 
 private:
+	friend class Framebuffer;
 	int width;
 	int height;
 	std::vector<uchar4> data;

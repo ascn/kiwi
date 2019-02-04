@@ -76,7 +76,7 @@ void Transform::LookAt(Transform target, Vector3 worldUp) {
 
 void Transform::updateLocal() {
 	rotateMat = glm::lookAt(position, position + forward, up);
-	transMat = glm::translate(position) * rotateMat * glm::scale(scale);
+	transMat = glm::lookAt(position, position + forward, up);
 }
 
 void Transform::updateRotationMatrix() {

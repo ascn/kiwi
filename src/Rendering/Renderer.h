@@ -24,7 +24,7 @@ public:
 	Renderer();
 	Renderer(Scene &s);
 	virtual ~Renderer() {}
-	virtual void render() = 0;
+	virtual void render(bool useMaterial = true) = 0;
 
 	virtual Component *clone() = 0;
 

@@ -1,10 +1,13 @@
+#ifndef __ROTATINGMESH_H__
+#define __ROTATINGMESH_H__
+
 #include "Core/GameObject.h"
 #include "Scripts/Behavior.h"
 
 using namespace Kiwi;
 
 class RotatingBehavior : public Behavior {
-	K_COMPONENT_H(Behavior);
+	K_COMPONENT_H(RotatingBehavior);
 public:
 	RotatingBehavior(Scene &s) : Behavior(s), growing(true) {}
 	~RotatingBehavior() {}
@@ -38,3 +41,5 @@ public:
 		AddComponent<RotatingBehavior>(*scene);
 	}
 };
+
+#endif // __ROTATINGMESH_H__

@@ -7,6 +7,12 @@
 
 namespace Kiwi {
 
+ShaderProgram::ShaderProgram(ShaderProgram &&other) :
+	ShaderProgram("DummyMove")
+{
+	swap(*this, other);
+}
+
 ShaderProgram::~ShaderProgram() {
 	if (programHandle != 0) {
 		GLsizei count;

@@ -53,6 +53,9 @@ public:
 	ShaderProgram(const ShaderProgram &other) = delete;
 	ShaderProgram &operator=(ShaderProgram other) = delete;
 
+	// Move operators
+	ShaderProgram(ShaderProgram &&other);
+
 	/**
 	 * Destructs a shader program. If the program is linked,
 	 * all shaders are detached. All shaders are deleted. Then,
@@ -213,6 +216,16 @@ public:
 	static ShaderLibrary &getShaderLibrary() {
 		static ShaderLibrary shaderLib;
 		return shaderLib;
+	}
+
+	friend void swap(ShaderProgram &first, ShaderProgram &second) {
+		using std::swap;
+
+		swap(first.name, second.name);
+		swap(first.shaderHandles, second.shaderHandles);
+		swap(first.programHandle, second.programHandle);
+		swap(first.uniforms, second.uniforms);
+		swap(first.attribs, second.attribs);
 	}
 
 private:

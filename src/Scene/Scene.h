@@ -6,6 +6,7 @@
 #include "Rendering/Renderer.h"
 #include "Scene/Camera.h"
 #include "Core/Engine.h"
+#include "Scene/Light.h"
 
 namespace Kiwi {
 
@@ -26,6 +27,9 @@ public:
 	std::vector<std::unique_ptr<GameObject>> objects;
 	std::vector<Renderer *> renderList;
 	std::vector<Behavior *> updateList;
+
+	std::vector<Light *> lightList;
+
 	MeshLibrary meshLib;
 };
 

@@ -18,6 +18,12 @@ Mesh::Mesh(String name) :
 	indices(),
 	name(name) {}
 
+Mesh::~Mesh() {
+	const GLuint buffers[2] = { VBO, EBO };
+	glDeleteBuffers(2, buffers);
+	glDeleteVertexArrays(1, &VAO);
+}
+
 Mesh *Mesh::LoadFromFile(const String &filename) {
 	return Mesh::LoadFromFile(filename, filename);
 }
@@ -80,7 +86,6 @@ void Mesh::prepareToDraw() {
 	glGenBuffers(1, &EBO);
 
 	glBindVertexArray(VAO);
-
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);

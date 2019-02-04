@@ -20,7 +20,7 @@ K_COMPONENT_H(MeshRenderer)
 	MeshRenderer() {}
 	MeshRenderer(Scene &s);
 	virtual ~MeshRenderer() override;
-	virtual void render() override;
+	virtual void render(bool useMaterial = true) override;
 
 	virtual Component *clone() override {
 		auto *ret = new MeshRenderer(*Renderer::scene);

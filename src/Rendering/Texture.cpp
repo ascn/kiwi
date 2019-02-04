@@ -9,7 +9,22 @@ Texture::Texture() :
 {}
 
 Texture::~Texture() {
+	if (textureID != -1) {
+		glDeleteTextures(1, &textureID);
+	}
+}
 
+Texture *Texture::CreateEmptyTexture(int width, int height) {
+	auto t = new Texture();
+	t->width = width;
+	t->height = height;
+	glGenTextures(1, &t->textureID);
+	glBindTexture(GL_TEXTURE_2D, t->textureID);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, t->width, t->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	return t;
 }
 
 Texture *Texture::LoadFromFile(const String &filename) {

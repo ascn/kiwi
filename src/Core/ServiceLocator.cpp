@@ -46,6 +46,9 @@ void ServiceLocator::initGLFW() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 }
 
+int ServiceLocator::width = 1280;
+int ServiceLocator::height = 720;
+
 GLFWwindow *ServiceLocator::getMainWindow() {
 	GLFWmonitor *monitor = glfwGetPrimaryMonitor();
 
@@ -55,7 +58,7 @@ GLFWwindow *ServiceLocator::getMainWindow() {
 	glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
 	glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
 	//static GLFWwindow* window = glfwCreateWindow(mode->width, mode->height, "Kiwi", monitor, NULL);
-	static GLFWwindow *window = glfwCreateWindow(1280, 720, "Kiwi", NULL, NULL);
+	static GLFWwindow *window = glfwCreateWindow(width, height, "Kiwi", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(0);
 	return window;

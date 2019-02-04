@@ -32,6 +32,8 @@ public:
 
 	void glfwErrorCallback(int error, const char *desc);
 
+	static int width, height;
+
 };
 
 }
