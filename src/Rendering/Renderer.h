@@ -36,6 +36,7 @@ public:
 	bool enabled;
 	Material *material;
 	Scene *scene;
+	bool castShadows;
 };
 
 }

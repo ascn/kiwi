@@ -27,9 +27,10 @@ void Scene::render() {
 
 	// Render shadow maps
 	for (const auto &light : lightList) {
-		if (light->shadowType == Light::ShadowType::None) { continue; }
+		if (light->shadowType != Light::ShadowType::Realtime) { continue; }
 		light->prepareToRenderShadowMap();
 		for (const auto &r : renderList) {
+			if (!r->castShadows) { continue; }
 			auto transform = r->gameObject->GetComponent<Transform>()->GetViewMatrix();
 			Light::shadowShader->setUniform("u_model", transform);
 			r->render(false);
@@ -45,9 +46,14 @@ void Scene::render() {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glViewport(0, 0, ServiceLocator::width, ServiceLocator::height);
 
-	auto shadowCastingLight = lightList[0];
-	Matrix4 lightView = shadowCastingLight->getLightSpaceTransform();
-	Vector3 lightPos = shadowCastingLight->gameObject->GetComponent<Transform>()->GetPosition();
+	Matrix4 lightView;
+	Vector3 lightPos;
+	Light *shadowCastingLight = nullptr;
+	if (lightList.size() > 0) {
+		shadowCastingLight = lightList[0];
+		lightView = shadowCastingLight->getLightSpaceTransform();
+		lightPos = shadowCastingLight->gameObject->GetComponent<Transform>()->GetPosition();
+	}
 
 	for (const auto &r : renderList) {
 		auto transform = r->gameObject->GetComponent<Transform>()->GetViewMatrix();
@@ -56,12 +62,15 @@ void Scene::render() {
 		r->material->shader.setUniform("u_modelInvTr", invTranspose);
 		r->material->shader.setUniform("u_view", cameraComponent->viewMatrix());
 		r->material->shader.setUniform("u_proj", cameraComponent->projectionMatrix());
+		r->material->shader.setUniform("u_resolution", Vector2(1280, 720));
 
-		r->material->shader.setUniform("u_lightView", lightView);
-		r->material->shader.setUniform("u_lightPos", lightPos);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, shadowCastingLight->depthFBO.depth);
-		r->material->shader.setUniform("u_shadowMap", 0);
+		if (shadowCastingLight) {
+			r->material->shader.setUniform("u_lightView", lightView);
+			r->material->shader.setUniform("u_lightPos", lightPos);
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, shadowCastingLight->depthFBO.depth);
+			r->material->shader.setUniform("u_shadowMap", 0);
+		}
 
 		r->render();
 	}

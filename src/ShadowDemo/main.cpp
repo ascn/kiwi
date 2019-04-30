@@ -16,9 +16,10 @@
 
 #include "RotatingMesh.h"
 #include "MeshObject.h"
-//#include "OrbitingObject.h"
+#include "OribitingObject.h"
 
 K_COMPONENT_S(RotatingBehavior);
+K_COMPONENT_S(OrbitingBehavior);
 
 void loadTestScene1(Kiwi::Engine &engine) {
 	engine.currentScene = std::make_unique<Kiwi::Scene>();
@@ -103,6 +104,7 @@ void loadTestScene2(Kiwi::Engine &engine) {
 	lightComponent.shadowType = Kiwi::Light::ShadowType::Realtime;
 	mainLight->GetComponent<Kiwi::Transform>()->Translate(Vector3(2, 10, 0));
 	mainLight->GetComponent<Kiwi::Transform>()->LookAt(Vector3(0, 0, 0));
+	auto orbitComponent = mainLight->AddComponent<OrbitingBehavior>(*engine.currentScene, Vector3(0, 0, 0), 2.f);
 	engine.currentScene->lightList.push_back(&lightComponent);
 	engine.currentScene->objects.push_back(std::unique_ptr<Kiwi::GameObject>(mainLight));
 
@@ -137,8 +139,10 @@ int main() {
 		coneMesh->prepareToDraw();
 		Kiwi::Mesh *floorMesh = Kiwi::Mesh::LoadFromFile("D:/Users/achan/Projects/kiwi/kiwi/res/test2/test2_floor.obj", "Floor");
 		floorMesh->prepareToDraw();
-		Kiwi::Mesh *sphereMesh = Kiwi::Mesh::LoadFromFile("D:/Users/achan/Projects/kiwi/kiwi/res/test2/test2_sphere.obj", "Sphere");
+		Kiwi::Mesh *sphereMesh = Kiwi::Mesh::LoadFromFile("D:/Users/achan/Projects/kiwi/kiwi/res/test2/test2_spheres.obj", "Sphere");
 		sphereMesh->prepareToDraw();
+		Kiwi::Mesh *lightMesh = Kiwi::Mesh::LoadFromFile("D:/Users/achan/Projects/kiwi/kiwi/res/sphere.obj", "LightSphere");
+		lightMesh->prepareToDraw();
 
 		// Add geometry objects
 		auto wahooObject = std::make_unique<MeshObject>("Wahoo", wahooMesh,
@@ -162,8 +166,13 @@ int main() {
 		auto lightComponent = mainLight->AddComponent<Kiwi::Light>();
 		lightComponent.lightType = Kiwi::Light::LightType::Directional;
 		lightComponent.shadowType = Kiwi::Light::ShadowType::Realtime;
-		mainLight->GetComponent<Kiwi::Transform>()->Translate(Vector3(2, 8, 0));
+		mainLight->GetComponent<Kiwi::Transform>()->Translate(Vector3(4, 8, 0));
 		mainLight->GetComponent<Kiwi::Transform>()->LookAt(Vector3(0, 0, 0));
+		auto orbitComponent = mainLight->AddComponent<OrbitingBehavior>(*engine.currentScene, Vector3(0, 0, 0), 4.f);
+		mainLight->AddComponent<Kiwi::MeshFilter>(lightMesh);
+		auto &lightMeshRenderer = mainLight->AddComponent<Kiwi::MeshRenderer>(*engine.currentScene);
+		lightMeshRenderer.castShadows = false;
+		lightMeshRenderer.material = testMat;
 		engine.currentScene->lightList.push_back(&lightComponent);
 		engine.currentScene->objects.push_back(std::unique_ptr<Kiwi::GameObject>(mainLight));
 

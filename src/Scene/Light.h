@@ -20,6 +20,7 @@ public:
 
 	enum class ShadowType : char {
 		Realtime,
+		Raycast,
 		None
 	} shadowType;
 

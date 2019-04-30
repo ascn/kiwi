@@ -15,7 +15,7 @@ Logger ServiceLocator::getLogger(const String &logger) {
 	try {
 		log = Logger::logs.at(logger);
 	} catch (std::exception &) {
-		Logger::logs.emplace(logger, spdlog::basic_logger_mt(logger, "log/" + logger + ".txt"));
+		Logger::logs.emplace(logger, spdlog::basic_logger_mt(logger, "log/" + logger + ".txt", true));
 		log = Logger::logs.at(logger);
 		log->set_level(Logger::level);
 	}

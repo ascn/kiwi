@@ -8,7 +8,7 @@ std::unordered_map<String, std::shared_ptr<spdlog::logger>> Logger::logs;
 void Logger::Initialize() {
 	spdlog::set_pattern("[%H:%M:%S.%e] [%l] %v");
 	try {
-		logs.emplace("default", spdlog::basic_logger_mt("default", "log/log.txt"));
+		logs.emplace("default", spdlog::basic_logger_mt("default", "log/log.txt", true));
 		logs.at("default")->set_level(Logger::level);
 		Logger::initialized = true;
 		logs.at("default")->set_pattern("[%c] [%l] %v");
@@ -22,6 +22,7 @@ void Logger::Initialize() {
 }
 
 void Logger::Log(const String &message, LOG_LEVEL level) {
+#ifdef _DEBUG
 	if (!Logger::initialized) { return; }
 	if (level >= Logger::level) {
 		auto def_log = logs.at("default");
@@ -30,6 +31,7 @@ void Logger::Log(const String &message, LOG_LEVEL level) {
 		}
 		log->log(level, message);
 	}
+#endif
 }
 
 }

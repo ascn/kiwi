@@ -6,12 +6,15 @@ namespace Kiwi {
 Renderer::Renderer() :
 	enabled(true),
 	material(nullptr),
-	scene(nullptr) {}
+	scene(nullptr),
+	castShadows(true)
+{}
 
 Renderer::Renderer(Scene &s) :
 	enabled(true),
 	material(nullptr),
-	scene(&s)
+	scene(&s),
+	castShadows(true)
 {
 	s.renderList.push_back(this);
 }

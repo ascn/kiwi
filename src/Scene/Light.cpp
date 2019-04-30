@@ -31,7 +31,7 @@ void Light::prepareToRenderShadowMap() {
 }
 
 Matrix4 Light::getLightSpaceTransform() {
-	Matrix4 lightProj = glm::ortho(-10.f, 10.f, -10.f, 10.f, 0.1f, 10.f);
+	Matrix4 lightProj = glm::ortho(-10.f, 10.f, -10.f, 10.f, 0.1f, 100.f);
 	auto transform = Component::gameObject->GetComponent<Transform>();
 	Matrix4 lightView = transform->GetViewMatrix();
 	return lightProj * lightView;

@@ -1,4 +1,6 @@
 #include "Core/GameObject.h"
+#include "Rendering/Mesh.h"
+#include "Rendering/MeshRenderer.h"
 
 using namespace Kiwi;
 
