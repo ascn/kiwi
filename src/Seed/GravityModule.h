@@ -8,13 +8,11 @@ namespace Kiwi::Seed {
 
 class GravityModule : public Module {
 public:
-	GravityModule(ParticleManager &pm) : Module(pm) {}
+	GravityModule(ParticleManager &pm);
 
-	virtual void update(float dt) override {
-		for (int i = 0; i < particles.maxParticles; ++i) {
-			particles.setForce(i, Vector3(0, -9.8, 0));
-		}
-	}
+	virtual void update(float dt) override;
+
+	Vector3 gravity;
 };
 
 }

@@ -17,6 +17,8 @@ public:
 		enabled = enabled_;
 	}
 
+	bool isEnabled() { return enabled; }
+
 protected:
 	ParticleManager &particles;
 	bool enabled;

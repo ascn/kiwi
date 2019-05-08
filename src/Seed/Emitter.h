@@ -34,29 +34,7 @@ public:
 
 	virtual ~Emitter() {};
 
-	virtual void update(float dt) {
-		elapsedTime += dt;
-		for (const auto &module : modules) {
-			module->update(dt);
-		}
-
-		// Check if we should spawn particle
-		if (timeSinceLastSpawn > timeBetweenSpawns) {
-			timeBetweenSpawns = 1.f / spawnRate(elapsedTime);
-			timeSinceLastSpawn = 0.f;
-			int particle = manager.spawnParticle();
-			if (particle >= 0) {
-				// Particle is valid, set properties
-				const auto &spawnProps = spawner->GetSpawnedProperties();
-				for (const auto &prop : spawnProps) {
-					manager.set(prop.first, particle, prop.second);
-				}
-				manager.setParticleValid(particle, true);
-			}
-		} else {
-			timeSinceLastSpawn += dt;
-		}
-	}
+	virtual void update(float dt);
 
 	template <typename T>
 	T &AddModule();

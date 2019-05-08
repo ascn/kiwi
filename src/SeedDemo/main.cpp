@@ -28,17 +28,21 @@ int main() {
 		// Create fountain object
 		Kiwi::GameObject *fountainObject = new Kiwi::GameObject("Fountain");
 		auto &seedSysComp = fountainObject->AddComponent<Kiwi::Seed::SeedSystem>(*(engine.currentScene));
-		auto emitter_up = std::make_unique<Kiwi::Seed::Emitter>(&seedSysComp, 300, 100.f);
+		auto emitter_up = std::make_unique<Kiwi::Seed::Emitter>(&seedSysComp, 1000, [](float elapsedTime) {
+			return (glm::cos(0.4f * elapsedTime) + 1) * 100.f;
+		});
 		Kiwi::Seed::Emitter &emitter = *emitter_up;
 		seedSysComp.emitters.push_back(std::move(emitter_up));
 		emitter.AddModule<Kiwi::Seed::TickLifetimeModule>();
 		emitter.AddModule<Kiwi::Seed::ResetForceModule>();
-		emitter.AddModule<Kiwi::Seed::GravityModule>();
+		emitter.AddModule<Kiwi::Seed::GravityModule>().setEnabled(false);
 		emitter.AddModule<Kiwi::Seed::PhysicsModule>();
 		emitter.AddRenderer<Kiwi::Seed::SeedPointRenderer>(*(engine.currentScene)).material = fountainMaterial;
 
 		auto &fountainSpawner = emitter.SetSpawner<Kiwi::Seed::FountainSpawner>();
-		fountainSpawner.lifetime = 10;
+		fountainSpawner.lifetime = 3;
+		fountainSpawner.angle = glm::radians(20.f);
+		fountainSpawner.axis = Vector3(-1, 0, 0);
 
 		engine.currentScene->objects.push_back(std::unique_ptr<Kiwi::GameObject>(fountainObject));
 

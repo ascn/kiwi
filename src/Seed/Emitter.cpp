@@ -18,4 +18,33 @@ Emitter::Emitter(SeedSystem *system_, unsigned int maxParticles_, std::function<
 	timeSinceLastSpawn(0.f)
 {}
 
+void Emitter::update(float dt) {
+	elapsedTime += dt;
+	for (const auto &module : modules) {
+		if (module->isEnabled()) {
+			module->update(dt);
+		}
+	}
+	timeBetweenSpawns = 1.f / spawnRate(elapsedTime);
+
+	// Check if we should spawn particle
+	if (timeSinceLastSpawn > timeBetweenSpawns) {
+		int numParticles = static_cast<int>(glm::floor(timeSinceLastSpawn / timeBetweenSpawns));
+		timeSinceLastSpawn = 0.f;
+		for (int i = 0; i < numParticles; ++i) {
+			int particle = manager.spawnParticle();
+			if (particle >= 0) {
+				// Particle is valid, set properties
+				const auto &spawnProps = spawner->GetSpawnedProperties();
+				for (const auto &prop : spawnProps) {
+					manager.set(prop.first, particle, prop.second);
+				}
+				manager.setParticleValid(particle, true);
+			}
+		}
+	} else {
+		timeSinceLastSpawn += dt;
+	}
+}
+
 }
