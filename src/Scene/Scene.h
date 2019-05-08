@@ -15,7 +15,7 @@ public:
 	Scene();
 	~Scene();
 
-	void update();
+	void update(float dt);
 	void render();
 
 	GameObject *activeCamera;

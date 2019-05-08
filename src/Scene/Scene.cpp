@@ -15,9 +15,9 @@ Scene::Scene() :
 
 Scene::~Scene() {}
 
-void Scene::update() {
+void Scene::update(float dt) {
 	for (const auto &b : updateList) {
-		b->update();
+		b->update(dt);
 	}
 }
 

@@ -12,7 +12,7 @@ public:
 	RotatingBehavior(Scene &s) : Behavior(s), growing(true) {}
 	~RotatingBehavior() {}
 
-	void update() override {
+	void update(float dt) override {
 		auto transform = Component::gameObject->GetComponent<Transform>();
 		Vector3 scale = transform->GetScale();
 		if (scale.x < 2 && growing) {

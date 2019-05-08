@@ -15,7 +15,7 @@ public:
 	{}
 	~OrbitingBehavior() {}
 
-	void update() override {
+	void update(float dt) override {
 		// Get position as if this was a unit circle
 		float x = glm::cos(glm::radians(currentAngle));
 		float y = glm::sin(glm::radians(currentAngle));

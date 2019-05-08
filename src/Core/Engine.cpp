@@ -68,7 +68,7 @@ void Engine::run() {
 
 		while (lag >= MS_PER_TICK) {
 			// Update
-			currentScene->update();
+			currentScene->update(MS_PER_TICK / 1000.f);
 			lag -= MS_PER_TICK;
 		}
 

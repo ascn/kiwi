@@ -18,7 +18,7 @@ public:
 	}
 
 	virtual ~Behavior() {}
-	virtual void update() = 0;
+	virtual void update(float dt) = 0;
 
 	virtual Component *clone() = 0;
 
