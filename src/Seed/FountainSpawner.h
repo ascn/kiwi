@@ -16,8 +16,6 @@ public:
 
 	virtual ~FountainSpawner() {}
 
-	virtual const std::unordered_map<String, std::any> &GetSpawnedProperties();
-
 	float angle;
 	Vector3 axis;
 	float minSpeed;
@@ -25,8 +23,8 @@ public:
 	
 	float lifetime;
 
-private:
-	void ComputeSpawnedProperties();
+protected:
+	virtual void ComputeSpawnedProperties() override;
 };
 
 }

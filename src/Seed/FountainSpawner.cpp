@@ -16,11 +16,6 @@ FountainSpawner::FountainSpawner(Emitter *e) :
 	lifetime(30)
 {}
 
-const std::unordered_map<String, std::any> &FountainSpawner::GetSpawnedProperties() {
-	ComputeSpawnedProperties();
-	return nextSpawnedProperties;
-}
-
 void FountainSpawner::ComputeSpawnedProperties() {
 	Transform *transform = emitter->system->gameObject->GetComponent<Transform>();
 	float cosTheta = glm::cos(angle);

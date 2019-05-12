@@ -13,4 +13,9 @@ Spawner::Spawner(Emitter *e) :
 	}
 }
 
+const std::unordered_map<String, std::any> &Spawner::GetSpawnedProperties() {
+	ComputeSpawnedProperties();
+	return nextSpawnedProperties;
+}
+
 }

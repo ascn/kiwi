@@ -13,9 +13,11 @@ public:
 	Spawner(Emitter *e);
 	virtual ~Spawner() {}
 
-	virtual const std::unordered_map<String, std::any> &GetSpawnedProperties() = 0;
+	const std::unordered_map<String, std::any> &GetSpawnedProperties();
 
 protected:
+	virtual void ComputeSpawnedProperties() = 0;
+
 	Emitter *emitter;
 	std::unordered_map<String, std::any> nextSpawnedProperties;
 };

@@ -12,6 +12,12 @@
 #include "Seed/FountainSpawner.h"
 #include "Scene/Transform.h"
 
+#include "GlobeSpawner.h"
+#include "GlobeModule.h"
+
+#define __FOUNTAIN 1
+#define __GLOBE 0
+
 int main() {
 	Kiwi::Engine engine;
 	try {
@@ -33,17 +39,28 @@ int main() {
 		});
 		Kiwi::Seed::Emitter &emitter = *emitter_up;
 		seedSysComp.emitters.push_back(std::move(emitter_up));
-		emitter.AddModule<Kiwi::Seed::TickLifetimeModule>();
+		auto &tickModule = emitter.AddModule<Kiwi::Seed::TickLifetimeModule>();
 		emitter.AddModule<Kiwi::Seed::ResetForceModule>();
-		emitter.AddModule<Kiwi::Seed::GravityModule>().setEnabled(false);
+		emitter.AddModule<Kiwi::Seed::GravityModule>().setEnabled(true);
+		auto &globeModule = emitter.AddModule<GlobeModule>();
+		globeModule.setEnabled(false);
 		emitter.AddModule<Kiwi::Seed::PhysicsModule>();
 		emitter.AddRenderer<Kiwi::Seed::SeedPointRenderer>(*(engine.currentScene)).material = fountainMaterial;
-
+		
+		#if __FOUNTAIN
 		auto &fountainSpawner = emitter.SetSpawner<Kiwi::Seed::FountainSpawner>();
 		fountainSpawner.lifetime = 3;
-		fountainSpawner.angle = glm::radians(20.f);
+		fountainSpawner.angle = glm::radians(180.f);
 		fountainSpawner.axis = Vector3(-1, 0, 0);
-
+		#elif __GLOBE
+		float radius = 1;
+		auto &globeSpawner = emitter.SetSpawner<GlobeSpawner>();
+		globeSpawner.radius = radius;
+		globeModule.center = fountainObject->GetComponent<Kiwi::Transform>()->GetPosition();
+		globeModule.radius = radius;
+		globeModule.setEnabled(true);
+		tickModule.setEnabled(false);
+		#endif
 		engine.currentScene->objects.push_back(std::unique_ptr<Kiwi::GameObject>(fountainObject));
 
 		// Create camera
